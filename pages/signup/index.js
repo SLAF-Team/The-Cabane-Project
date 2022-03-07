@@ -127,7 +127,7 @@ const SignUp = () => {
         />
       </div>
 
-      <button type="submit" className="btn btn-primary btn-lg px-4 gap-3">
+      <button type="submit" className="btn btn-primary">
         Inscription
       </button>
     </form>
