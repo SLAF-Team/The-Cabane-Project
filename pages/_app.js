@@ -6,17 +6,20 @@ import jwt_decode from "jwt-decode";
 import { UserContext } from "../context/UserContext";
 import { useState } from "react";
 
+const token = Cookies.get("token");
+
 function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState(null);
+  const [connected, setConnected] = useState(false);
 
-  if (Cookies.get("token") !== undefined) {
-    const token = Cookies.get("token");
-    setUser(jwt_decode(token));
+  try {
+    setUser(jwtDecode(token));
+    setConnected(true);
+  } catch {
+    console.log("No user connected");
   }
-  console.log("cookie");
-  console.log(Cookies.get("token"));
-  console.log("user");
-  console.log(user)
+
+  console.log(user);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
