@@ -2,3 +2,11 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.shackImg {
+  height: 500px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
