@@ -1,18 +1,19 @@
 import Cookies from "js-cookie";
-import { useState } from "react"
+import { useUserContext } from "../../context/UserContext";
 
 const SignOut = () => {
-const [active, setActive] = useState(false)
+  const { setUser } = useUserContext();
 
-const handleClick =() => {
-  setActive(true);
-  Cookies.remove("token")
-}
+  const handleClick = () => {
+    Cookies.remove("token");
+    setUser(null);
+  };
+
   return (
     <button className="btn btn-danger" onClick={() => handleClick()}>
       Déconnexion ?
     </button>
   );
-}
+};
 
-export default SignOut
+export default SignOut;
