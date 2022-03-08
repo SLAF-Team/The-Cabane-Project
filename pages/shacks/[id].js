@@ -40,9 +40,7 @@ export async function getServerSideProps(context) {
   const { id } = context.params;
   const shack = await prisma.cabane.findUnique({
     where: { id: parseInt(id) },
-  });
-  const user = await prisma.user.findUnique({
-    where: { id: parseInt(shack.ownerId) },
+    include: { owner: { select: { email: true } } },
   });
   return {
     props: {
