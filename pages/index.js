@@ -5,8 +5,16 @@ import Nav from "../components/navbar";
 import Hero from "../components/hero";
 import Footer from "../components/footer";
 import Link from "next/link";
+import classes from './shacks/shacks.module.css';
+import { PrismaClient } from "@prisma/client";
+import ShackCard from '../components/shackcard/ShackCard'
 
-export default function Home() {
+
+const prisma = new PrismaClient();
+
+export default function Home(props) {
+  const shacks = props.shacks;
+
   return (
     <div className={styles.container}>
       <Head>
@@ -20,7 +28,21 @@ export default function Home() {
         <Link href="/signup">
           <a>Inscription</a>
         </Link>
+          <div className={classes.cards}>
+          {shacks?.map((shack, i) => (
+            <ShackCard shack={shack} key={i} />
+          ))}
+        </div>
       </main>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const allShacks = await prisma.cabane.findMany();
+  return {
+    props: {
+      shacks: allShacks,
+    },
+  };
 }

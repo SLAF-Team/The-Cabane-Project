@@ -4,6 +4,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import classes from './ShackCard.module.css';
+import Link from 'next/link'
 
 
 
@@ -12,7 +13,7 @@ const ShackCard = ({ shack }) => {
   const shackLink = `/shacks/${shack.id}`
 
   return (
-    <a href={shackLink}>
+    <Link href={shackLink}>
       <Card className={classes.card} sx={{ maxWidth: 345 }}>
         <CardActionArea>
           <CardMedia
@@ -31,7 +32,7 @@ const ShackCard = ({ shack }) => {
           </CardContent>
         </CardActionArea>
       </Card>
-    </a>
+    </Link>
   );
 }
 
