@@ -6,6 +6,7 @@ import Link from "next/link";
 import classes from './shacks/shacks.module.css';
 import { PrismaClient } from "@prisma/client";
 import ShackCard from '../components/shackcard/ShackCard'
+import Button from '@mui/material/Button';
 
 
 const prisma = new PrismaClient();
@@ -30,6 +31,13 @@ export default function Home(props) {
             <ShackCard shack={shack} key={i} />
           ))}
         </div>
+        <div>
+          <Button variant="outlined" size="large" href="/shacks" >
+            Voir toutes les cabannes
+          </Button>
+        </div>
+
+
       </main>
     </div>
   );
