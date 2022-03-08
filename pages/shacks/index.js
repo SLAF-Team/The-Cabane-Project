@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { useState } from "react";
-import ShackCard from '../../components/shackcard/ShackCard'
-import classes from './shacks.module.css';
+import ShackCard from "../../components/shackcard/ShackCard";
+import classes from "./shacks.module.css";
 
 const prisma = new PrismaClient();
 

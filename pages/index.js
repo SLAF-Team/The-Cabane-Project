@@ -21,3 +21,12 @@ export default function Home() {
     </div>
   );
 }
+
+export async function getServerSideProps() {
+  const allShacks = await prisma.cabane.findMany();
+  return {
+    props: {
+      shacks: allShacks,
+    },
+  };
+}

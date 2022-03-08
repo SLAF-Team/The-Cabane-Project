@@ -31,27 +31,34 @@ const SignUp = () => {
   };
 
   // fonction de fetch à changer pour call API Prisma
-  const fetchRegisterForm = (data) => {
-    fetch("http://localhost:3000/users", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => {
-        if (res.ok) {
-          const token = res.headers.get("Authorization");
-          Cookies.set("token", token, { expires: 7 });
-          // history(`/`);
-          return res.json();
-        } else {
-          throw new Error(res);
-        }
-      })
-      .then((json) => console.dir(json))
-      .catch((err) => console.error(err));
-  };
+  // const fetchRegisterForm = (data) => {
+  //   fetch("http://localhost:3000/users", {
+  //     method: "post",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(data),
+  //   })
+  //     .then((res) => {
+  //       if (res.ok) {
+  //         const token = res.headers.get("Authorization");
+  //         Cookies.set("token", token, { expires: 7 });
+  //         // history(`/`);
+  //         return res.json();
+  //       } else {
+  //         throw new Error(res);
+  //       }
+  //     })
+  //     .then((json) => console.dir(json))
+  //     .catch((err) => console.error(err));
+  // };
+
+  async function addNewFood(params) {
+    await axios.post("/api/addFood", {
+      ...data,
+    });
+    window.location.reload();
+  }
 
   // Handling the form submission + fetch data + update state
 
