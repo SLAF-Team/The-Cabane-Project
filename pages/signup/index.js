@@ -23,7 +23,7 @@ const SignUp = () => {
   };
 
   async function signUserUp(data) {
-    await axios.post("/api/addUser", {
+    await axios.post("/api/user/addUser", {
       ...data,
     });
     window.location.reload();
@@ -33,11 +33,11 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
-      user: {
+      // user: {
         name: name,
         email: email,
-        password: password,
-      },
+        // password: password,
+      // },
     };
     console.log(data);
     signUserUp(data);
