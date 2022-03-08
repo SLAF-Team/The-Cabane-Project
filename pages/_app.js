@@ -9,10 +9,14 @@ import { useState } from "react";
 function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState(null);
 
-  if (Cookies.get("token")) {
+  if (Cookies.get("token") !== undefined) {
     const token = Cookies.get("token");
     setUser(jwt_decode(token));
   }
+  console.log("cookie");
+  console.log(Cookies.get("token"));
+  console.log("user");
+  console.log(user)
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

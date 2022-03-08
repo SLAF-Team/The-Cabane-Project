@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 const SignUp = () => {
+
   // States for registration
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -39,9 +40,7 @@ const SignUp = () => {
         // password: password,
       // },
     };
-    console.log(data);
     signUserUp(data);
-    // setUser(jwt_decode(Cookies.get("token")))
   };
 
   return (

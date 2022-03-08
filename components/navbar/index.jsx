@@ -20,7 +20,7 @@ export default function Navbar() {
         </Link>
       </div>
       <div className="navbar-nav container">
-        <Link href="/signin" exact className="nav-item nav-link">
+        <Link href="/signout" exact className="nav-item nav-link">
           Déconnexion
         </Link>
       </div>
