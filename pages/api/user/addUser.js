@@ -13,7 +13,6 @@ export default async (req, res) => {
     });
     res.status(200).json(result);
     const token = res.headers.get("Authorization");
-    console.log(token)
     Cookies.set("token", token, { expires: 7 });
   } catch (err) {
     console.log(err);
