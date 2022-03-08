@@ -1,0 +1,23 @@
+.herobanner {
+  width: 100%;
+
+}
+
+.heroimage {
+  position: relative;
+  text-align: center;
+  filter: grayscale(50%);
+  -webkit-filter: grayscale(50%);
+}
+
+.centeredtitle {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  color: white;
+  font-size: 10vh;
+  background-color: black;
+}
+
