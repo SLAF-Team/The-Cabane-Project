@@ -3,8 +3,16 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Hero from "../components/hero";
 import Link from "next/link";
+import classes from './shacks/shacks.module.css';
+import { PrismaClient } from "@prisma/client";
+import ShackCard from '../components/shackcard/ShackCard'
 
-export default function Home() {
+
+const prisma = new PrismaClient();
+
+export default function Home(props) {
+  const shacks = props.shacks;
+
   return (
     <div className={styles.container}>
       <Head>
@@ -17,6 +25,11 @@ export default function Home() {
         <Link href="/signup">
           <a>Inscription</a>
         </Link>
+          <div className={classes.cards}>
+          {shacks?.map((shack, i) => (
+            <ShackCard shack={shack} key={i} />
+          ))}
+        </div>
       </main>
     </div>
   );
