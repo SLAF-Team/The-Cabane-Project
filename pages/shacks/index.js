@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { useState } from "react";
 import ShackCard from '../../components/shackcard/ShackCard'
+import classes from './shacks.module.css';
 
 const prisma = new PrismaClient();
 
@@ -12,7 +13,7 @@ function Shacks(props) {
       <div>
         <h2>Cabannes</h2>
       </div>
-      <div>
+      <div className={classes.cards}>
         {shacks?.map((shack, i) => (
           <ShackCard shack={shack} key={i} />
         ))}
