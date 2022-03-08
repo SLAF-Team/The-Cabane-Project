@@ -1,14 +1,11 @@
-import Link from 'next/link'
+import Link from "next/link";
 
 const Users = () => {
-
-
-
   return (
     <div>
       <h1>Users!</h1>
     </div>
-  )
-}
+  );
+};
 
-export default Users
+export default Users;
