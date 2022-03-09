@@ -34,7 +34,7 @@ const SignIn = () => {
       e.preventDefault();
       const data = {
         email: email,
-        // password: password,
+        password: password,
       };
       signUserIn(data);
     };
