@@ -5,13 +5,13 @@ import { useUserContext } from "../../context/UserContext";
 import jwt_decode from "jwt-decode";
 
 const SignUp = () => {
-
-  const {setUser} = useUserContext()
+  const { setUser } = useUserContext();
 
   // States for registration
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isOwner, setOwner] = useState(false);
 
   // Handling the name change
   const handleName = (e) => {
@@ -28,14 +28,17 @@ const SignUp = () => {
     setPassword(e.target.value);
   };
 
+  const handleCheck = () => {
+    setOwner(!isOwner);
+  };
+
   async function signUserUp(data) {
     const result = await axios.post("/api/user/addUser", {
       ...data,
     });
     console.log(result);
     Cookies.set("token", result.data.token, { expires: 7 });
-    setUser(jwt_decode(Cookies.get("token")))
-    // window.location.reload();
+    setUser(result.data.user);
   }
 
   // Handling the form submission + fetch data + update state
@@ -44,6 +47,7 @@ const SignUp = () => {
     const data = {
       name: name,
       email: email,
+      isowner: isOwner,
       // password: password,
     };
     console.log(data);
@@ -81,6 +85,19 @@ const SignUp = () => {
           value={password}
           type="text"
         />
+      </div>
+
+      <div className="form-check">
+        <input
+          className="form-check-input"
+          type="checkbox"
+          value=""
+          id="flexCheckDefault"
+          onChange={handleCheck}
+        />
+        <label className="form-check-label">
+          Je suis un propriétaire
+        </label>
       </div>
 
       <button type="submit" className="btn btn-primary">

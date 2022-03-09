@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Cookies from "js-cookie";
+import axios from "axios";
 
 const SignIn = () => {
   const [email, setEmail] = useState();
@@ -13,32 +14,26 @@ const SignIn = () => {
     setPassword(e.target.value);
   };
 
+  async function signUserIn(data) {
+    const result = await axios.post("/api/user/logUserIn", {
+      ...data,
+    });
+    console.log(result);
+    // Cookies.set("token", result.data.token, { expires: 7 });
+    // setUser(jwt_decode(Cookies.get("token")));
+    // Il faudra ajouter headers.Authorization = `Bearer ${result.data.token}`;
+    // Eventuellement prendre le user aussi dans la réponse
+    // setUser
+    // setUser(result.data.user);
+  }
+
   const handleSubmit = () => {
     const data = {
-      user: {
         email: email,
-        password: password,
-      },
+        // password: password,
     };
+    signUserIn(data);
   }
-  // A revoir avec méthode Next pour call Prisma
-
-  //   fetch("http://localhost:3000/users/sign_in", {
-  //     method: "post",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(data),
-  //   }).then((res) => {
-  //     if (res.ok) {
-  //       const token = res.headers.get("Authorization");
-  //       Cookies.set("token", token, { expires: 7 });
-  //       return res.json();
-  //     } else {
-  //       throw new Error(res);
-  //     }
-  //   });
-  // };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -46,7 +41,7 @@ const SignIn = () => {
         <h1>Connexion</h1>
 
         <div className="form-group">
-          <label htmlFor="email">Identifiant *</label>
+          <label htmlFor="email">Email *</label>
           <input
             id="email"
             type="text"
