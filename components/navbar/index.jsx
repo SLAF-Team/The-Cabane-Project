@@ -4,6 +4,7 @@ import styles from "./NavBar.module.css";
 
 export default function Navbar() {
   const { user } = useUserContext();
+  console.log(user);
 
   return (
     <nav className="navbar navbar-expand navbar-light bg-light">
