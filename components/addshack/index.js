@@ -40,7 +40,7 @@ export default function AddShack({ closeModal }) {
     const location = Number.parseInt(addShackLocation.value,10);
     const published = checked;
     // avec useContext ou useAtom --> user.id
-    const ownerId = ;
+    const ownerId = 1;
     await axios.post("/api/shack/addShack", {
       title,
       price,
