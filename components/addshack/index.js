@@ -1,26 +1,24 @@
 import { useRef, useState } from "react";
 import axios from "axios";
-import jwt_decode from "jwt-decode";
 import Cookies from "js-cookie";
-
+import { useUserContext } from "../../context/UserContext";
+import jwt from "jsonwebtoken";
+import jwt_decode from "jwt-decode"
 
 export default function AddShack({ closeModal }) {
+  // const { user } = useUserContext();
+
   const [disable, setDisable] = useState(false);
   const [checked, setChecked] = useState(false);
-  const [user, setUser] = useState(null);
 
   const formRef = useRef();
   const token = Cookies.get("token");
-  // console.log("cookkkk")
-  // console.log(jwt_decode(token));
-  // console.log("userrr")
-  // console.log(user.id)
-  // console.log(jwt_decode(token));
+  // const id = jwt.verify(token, `coucou`);
+  // console.log(id);
 
   const handleChange = () => {
     setChecked(!checked);
   };
-
 
   async function addNewShack(params) {
     setDisable(true);
@@ -39,7 +37,6 @@ export default function AddShack({ closeModal }) {
     const imageUrl = addShackImageUrl.value;
     const location = Number.parseInt(addShackLocation.value,10);
     const published = checked;
-    // avec useContext ou useAtom --> user.id
     const ownerId = 1;
     await axios.post("/api/shack/addShack", {
       title,
