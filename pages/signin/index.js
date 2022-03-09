@@ -9,7 +9,6 @@ const SignIn = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -31,44 +30,43 @@ const SignIn = () => {
     // setUser(result.data.user);
   }
 
-  const handleSubmit = () => {
-    const data = {
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      const data = {
         email: email,
         // password: password,
+      };
+      signUserIn(data);
     };
-    signUserIn(data);
-  }
 
   return (
     <form onSubmit={handleSubmit}>
+      <h1>Connexion</h1>
 
-        <h1>Connexion</h1>
+      <div className="form-group">
+        <label htmlFor="email">Email *</label>
+        <input
+          id="email"
+          type="text"
+          onChange={handleEmail}
+          className="form-control"
+        />
+      </div>
 
-        <div className="form-group">
-          <label htmlFor="email">Email *</label>
-          <input
-            id="email"
-            type="text"
-            onChange={handleEmail}
-            className="form-control"
-          />
-        </div>
+      <div className="form-group">
+        <label htmlFor="password">Mot de passe *</label>
+        <input
+          id="password"
+          type="text"
+          onChange={handlePassword}
+          className="form-control"
+        />
+      </div>
 
-        <div className="form-group">
-          <label htmlFor="password">Mot de passe *</label>
-          <input
-            id="password"
-            type="text"
-            onChange={handlePassword}
-            className="form-control"
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="btn btn-primary"
-        >Connexion</button>
-      </form>
+      <button type="submit" className="btn btn-primary">
+        Connexion
+      </button>
+    </form>
   );
 };
 
