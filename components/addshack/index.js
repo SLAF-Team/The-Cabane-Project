@@ -39,7 +39,8 @@ export default function AddShack({ closeModal }) {
     const imageUrl = addShackImageUrl.value;
     const location = Number.parseInt(addShackLocation.value,10);
     const published = checked;
-    const ownerId = 1;
+    // avec useContext ou useAtom --> user.id
+    const ownerId = ;
     await axios.post("/api/shack/addShack", {
       title,
       price,

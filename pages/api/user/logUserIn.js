@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import jwt from "jsonwebtoken";
-
-const prisma = new PrismaClient();
+import prisma from "../../../lib/prisma.ts";
 
 export default async (req, res) => {
   const { email } = req.body;
@@ -38,7 +37,7 @@ export default async (req, res) => {
         //   // password: user.password,
         // };
 
-        const token = jwt.sign(user.id, "coucou");
+        const token = jwt.sign({ id: user.id, email: user.email }, "coucou");
         res.status(200).json({ user, token });
       }
     }
