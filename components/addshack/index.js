@@ -1,20 +1,22 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useUserContext } from "../../context/UserContext";
 import jwt from "jsonwebtoken";
-import jwt_decode from "jwt-decode"
 
 export default function AddShack({ closeModal }) {
-  // const { user } = useUserContext();
+  const { user } = useUserContext();
 
   const [disable, setDisable] = useState(false);
   const [checked, setChecked] = useState(false);
+  const [id, setId] = useState("");
 
   const formRef = useRef();
   const token = Cookies.get("token");
-  // const id = jwt.verify(token, `coucou`);
-  // console.log(id);
+
+  useEffect(() => {
+    setId(jwt.verify(user, `coucou`).id);
+  }, []);
 
   const handleChange = () => {
     setChecked(!checked);
@@ -35,22 +37,25 @@ export default function AddShack({ closeModal }) {
     const price = addShackPrice.value;
     const description = addShackDescription.value;
     const imageUrl = addShackImageUrl.value;
-    const location = Number.parseInt(addShackLocation.value,10);
+    const location = Number.parseInt(addShackLocation.value, 10);
     const published = checked;
-    const ownerId = 1;
-    await axios.post("/api/shack/addShack", {
-      title,
-      price,
-      description,
-      imageUrl,
-      location,
-      published,
-      ownerId,
-    },{headers:{Authorization:`Bearer ${token}`}});
+    const ownerId = id;
+    await axios.post(
+      "/api/shack/addShack",
+      {
+        title,
+        price,
+        description,
+        imageUrl,
+        location,
+        published,
+        ownerId,
+      },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
     setDisable(false);
     window.location.reload();
   }
-
 
   return (
     <div className="modal">
@@ -136,7 +141,7 @@ export default function AddShack({ closeModal }) {
             className="btn"
             onClick={() => addNewShack()}
           >
-            Ajouter
+            Ajouter !
           </button>
         </div>
       </div>

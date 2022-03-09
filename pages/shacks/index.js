@@ -1,13 +1,12 @@
-import { PrismaClient } from "@prisma/client";
-import { useState } from 'react';
-import ShackCard from '../../components/shackcard/ShackCard'
-import classes from './shacks.module.css';
+import { useState } from "react";
+import ShackCard from "../../components/shackcard/ShackCard";
+import classes from "./shacks.module.css";
 import AddShack from "../../components/addshack/index";
-import prisma from '../../lib/prisma.ts'
-
-
+import prisma from "../../lib/prisma.ts";
+import { useUserContext } from "../../context/UserContext";
 
 function Shacks(props) {
+  const { user } = useUserContext();
   const [showAddShackModal, setShowAddShackModal] = useState(false);
   const shacks = props.shacks;
 
@@ -15,28 +14,31 @@ function Shacks(props) {
     <div>
       <div>
         <h2>Cabannes</h2>
-        <div>
-          <button
-            className="btn"
-            style={{
-              paddingLeft: "15px",
-              paddingRight: "15px",
-              fontWeight: "500",
-            }}
-            onClick={() => setShowAddShackModal((pV) => !pV)}
-          >
-            Ajouter une cabanne
-          </button>
-        </div>
+        {user ? (
+          <div>
+            <button
+              className="btn"
+              style={{
+                paddingLeft: "15px",
+                paddingRight: "15px",
+                fontWeight: "500",
+              }}
+              onClick={() => setShowAddShackModal((pV) => !pV)}
+            >
+              Ajouter une cabanne
+            </button>
+          </div>
+        ) : null}
       </div>
       <div className={classes.cards}>
         {shacks?.map((shack, i) => (
           <ShackCard shack={shack} key={i} />
         ))}
       </div>
-        {showAddShackModal ? (
-            <AddShack closeModal={() => setShowAddShackModal(false)} />
-          ) : null}    </div>
+      {showAddShackModal ? (
+        <AddShack closeModal={() => setShowAddShackModal(false)} />
+      ) : null}{" "}
+    </div>
   );
 }
 
