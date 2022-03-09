@@ -37,7 +37,7 @@ const SignUp = () => {
     });
     console.log(result);
     Cookies.set("token", result.data.token, { expires: 7 });
-    setUser(result.data.user);
+    setUser(result.data.token);
   }
 
   // Handling the form submission + fetch data + update state
