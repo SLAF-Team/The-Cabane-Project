@@ -8,7 +8,7 @@ import prisma from '../../lib/prisma.ts'
 
 
 function Shacks(props) {
-  // const [showAddShackModal, setShowAddShackModal] = useState(false);
+  const [showAddShackModal, setShowAddShackModal] = useState(false);
   const shacks = props.shacks;
 
   return (
@@ -34,8 +34,9 @@ function Shacks(props) {
           <ShackCard shack={shack} key={i} />
         ))}
       </div>
-        <AddShack />
-    </div>
+        {showAddShackModal ? (
+            <AddShack closeModal={() => setShowAddShackModal(false)} />
+          ) : null}    </div>
   );
 }
 
