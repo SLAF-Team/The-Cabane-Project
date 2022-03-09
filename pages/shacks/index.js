@@ -1,22 +1,40 @@
 import { PrismaClient } from "@prisma/client";
+import { useState } from 'react';
 import ShackCard from '../../components/shackcard/ShackCard'
 import classes from './shacks.module.css';
+import AddShack from "../../components/addshack/index";
+import prisma from '../../lib/prisma.ts'
 
-const prisma = new PrismaClient();
+
 
 function Shacks(props) {
+  // const [showAddShackModal, setShowAddShackModal] = useState(false);
   const shacks = props.shacks;
 
   return (
     <div>
       <div>
         <h2>Cabannes</h2>
+        <div>
+          <button
+            className="btn"
+            style={{
+              paddingLeft: "15px",
+              paddingRight: "15px",
+              fontWeight: "500",
+            }}
+            onClick={() => setShowAddShackModal((pV) => !pV)}
+          >
+            Ajouter une cabanne
+          </button>
+        </div>
       </div>
       <div className={classes.cards}>
         {shacks?.map((shack, i) => (
           <ShackCard shack={shack} key={i} />
         ))}
       </div>
+        <AddShack />
     </div>
   );
 }

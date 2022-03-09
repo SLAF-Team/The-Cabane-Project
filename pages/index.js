@@ -7,9 +7,7 @@ import classes from './shacks/shacks.module.css';
 import { PrismaClient } from "@prisma/client";
 import ShackCard from '../components/shackcard/ShackCard'
 import Button from '@mui/material/Button';
-
-
-const prisma = new PrismaClient();
+import prisma from '../lib/prisma.ts'
 
 export default function Home(props) {
   const shacks = props.shacks;

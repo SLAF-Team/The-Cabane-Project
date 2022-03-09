@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
+import prisma from '../../../lib/prisma.ts'
 
-const prisma = new PrismaClient();
 
 export default async (req, res) => {
   const { id, title, price, description, imageUrl, published, owner, ownerId } =
