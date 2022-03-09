@@ -1,5 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
-import prisma from '../lib/prisma.ts'
+const prisma = new PrismaClient();
 
 async function main() {
   await prisma.cabane.deleteMany({});
