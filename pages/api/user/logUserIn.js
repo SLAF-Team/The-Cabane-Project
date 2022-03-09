@@ -4,10 +4,10 @@ import jwt from "jsonwebtoken";
 const prisma = new PrismaClient();
 
 export default async (req, res) => {
-  const data = req.body;
+  const { email } = req.body;
   try {
     // check si email bien envoyé
-    if (!data) {
+    if (!email) {
       return res.status(400).json({
         status: "error",
         error: "missing email",
@@ -18,7 +18,7 @@ export default async (req, res) => {
     // https://www.prisma.io/docs/concepts/components/prisma-client/crud#read
     const user = await prisma.user.findUnique({
       where: {
-        email: data.data.email,
+        email: email,
       },
     });
 
