@@ -46,8 +46,8 @@ const SignUp = () => {
     const data = {
       name: name,
       email: email,
+      password: password,
       isowner: isOwner,
-      // password: password,
     };
     console.log(data);
     signUserUp(data);
@@ -66,7 +66,7 @@ const SignUp = () => {
         />
       </div>
       <div className="form-group">
-        <label>Email</label>
+        <label>Email *</label>
 
         <input
           onChange={handleEmail}
@@ -76,7 +76,7 @@ const SignUp = () => {
         />
       </div>
       <div className="form-group">
-        <label>Password</label>
+        <label>Password *</label>
 
         <input
           onChange={handlePassword}

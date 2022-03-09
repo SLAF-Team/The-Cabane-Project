@@ -1,26 +1,22 @@
 import { PrismaClient } from "@prisma/client";
 import jwt from "jsonwebtoken";
 import prisma from "../../../lib/prisma.ts";
+const bcrypt = require("bcrypt");
 
 export default async (req, res) => {
-  const { email } = req.body;
+  const { email, password } = req.body;
   try {
-    // check si email bien envoyé
-    if (!email) {
+    if (!email || !password) {
       return res.status(400).json({
         status: "error",
-        error: "missing email",
+        error: "missing email or password",
       });
     } else {
-      // check user DB - call prisma
-      // https://www.prisma.io/docs/concepts/components/prisma-client/crud#read
       const user = await prisma.user.findUnique({
         where: {
           email: email,
         },
       });
-
-      // if user doesn't exist
       if (!user) {
         res.status(400).json({ status: "error", error: "User Not Found" });
       } else {
@@ -38,7 +34,9 @@ export default async (req, res) => {
         // };
 
         const token = jwt.sign({ id: user.id, email: user.email }, "coucou");
+        bcrypt.compare(password, user.password).then(isMatch => {
         res.status(200).json({ user, token });
+      })
       }
     }
   } catch (err) {
