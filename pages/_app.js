@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import Cookies from "js-cookie";
 import { UserContext } from "../context/UserContext";
 import { useState, useEffect } from "react";
+import jwt from "jsonwebtoken";
 
 // verifier qu'un token existe dans les cookies, si il y a un token il est potentiellement connecté
 // sinon, rediriger vers le login
@@ -13,6 +14,10 @@ function MyApp({ Component, pageProps }) {
   const token = Cookies.get("token");
   console.log("token");
   console.log(token);
+  if (token) {
+    console.log("decode");
+    console.log(jwt.verify(token, "coucou"));
+  }
   console.log("user");
   console.log(user);
 
