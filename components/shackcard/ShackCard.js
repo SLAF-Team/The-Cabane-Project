@@ -7,11 +7,11 @@ import classes from "./ShackCard.module.css";
 import Link from "next/link";
 
 const ShackCard = ({ shack }) => {
-const shackLink = `/shacks/${shack.id}`;
+  const shackLink = `/shacks/${shack.id}`;
 
   return (
     <Link href={shackLink}>
-      <Card className={classes.card} sx={{ maxWidth: 345 }}>
+      <Card className={classes.card} sx={{ width: "30%" }}>
         <CardActionArea>
           <CardMedia
             component="img"

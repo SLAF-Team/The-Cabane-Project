@@ -1,8 +1,6 @@
 import { useRef, useState } from "react";
 import axios from "axios";
-import jwt_decode from "jwt-decode";
 import Cookies from "js-cookie";
-
 
 export default function AddShack({ closeModal }) {
   const [disable, setDisable] = useState(false);
@@ -21,7 +19,6 @@ export default function AddShack({ closeModal }) {
     setChecked(!checked);
   };
 
-
   async function addNewShack(params) {
     setDisable(true);
     const {
@@ -37,23 +34,26 @@ export default function AddShack({ closeModal }) {
     const price = addShackPrice.value;
     const description = addShackDescription.value;
     const imageUrl = addShackImageUrl.value;
-    const location = Number.parseInt(addShackLocation.value,10);
+    const location = Number.parseInt(addShackLocation.value, 10);
     const published = checked;
     // avec useContext ou useAtom --> user.id
     const ownerId = 1;
-    await axios.post("/api/shack/addShack", {
-      title,
-      price,
-      description,
-      imageUrl,
-      location,
-      published,
-      ownerId,
-    },{headers:{Authorization:`Bearer ${token}`}});
+    await axios.post(
+      "/api/shack/addShack",
+      {
+        title,
+        price,
+        description,
+        imageUrl,
+        location,
+        published,
+        ownerId,
+      },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
     setDisable(false);
     window.location.reload();
   }
-
 
   return (
     <div className="modal-content">
