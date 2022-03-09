@@ -1,10 +1,14 @@
 import { useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
+import { useUserContext } from "../../context/UserContext";
 
 const SignIn = () => {
+  const { setUser } = useUserContext();
+
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -19,8 +23,8 @@ const SignIn = () => {
       ...data,
     });
     console.log(result);
-    // Cookies.set("token", result.data.token, { expires: 7 });
-    // setUser(jwt_decode(Cookies.get("token")));
+    Cookies.set("token", result.data.token, { expires: 7 });
+    setUser(result.data.token);
     // Il faudra ajouter headers.Authorization = `Bearer ${result.data.token}`;
     // Eventuellement prendre le user aussi dans la réponse
     // setUser

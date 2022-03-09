@@ -11,7 +11,7 @@ export default async (req, res) => {
         ...data,
       },
     });
-    const token = jwt.sign(user, 'coucou');
+    const token = jwt.sign(user.id, 'coucou');
     res.status(200).json({user, token});
   } catch (err) {
     console.log(err);

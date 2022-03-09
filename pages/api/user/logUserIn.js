@@ -31,22 +31,16 @@ export default async (req, res) => {
     // if user exists
 
     // payload for the token
-    const payload = {
-      // name: user.name,
-      id: user.id,
-      // email: user.email,
-      // isOwner: user.isowner,
-      // password: user.password,
-    };
-    // définition token avec payload
-    const token = jwt.sign(payload, "coucou");
+    // const payload = {
+    //   // name: user.name,
+    //   user
+    //   // email: user.email,
+    //   // isOwner: user.isowner,
+    //   // password: user.password,
+    // };
 
-    // response : un statut + le token + user
-    res.status(200).json({
-      success: true,
-      token: token,
-      user: user,
-    });
+    const token = jwt.sign(user.id, 'coucou');
+    res.status(200).json({ user, token });
   } catch (err) {
     console.log(err);
     res.status(403).json({ err: "Error occured while adding a new user." });
