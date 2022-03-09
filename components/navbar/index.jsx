@@ -1,16 +1,17 @@
 import Link from "next/link";
 import { useUserContext } from "../../context/UserContext";
 import styles from "./NavBar.module.css";
-import jwt from "jsonwebtoken";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const { user } = useUserContext();
-  let id = "";
+  const [id, setId] = useState("");
 
-  if(user) {
-    id = jwt.verify(user, "coucou");
-    console.log(id);
-  }
+  useEffect(() => {
+    if (user) {
+      setId(user.id);
+    }
+  }, []);
 
   return (
     <nav className="navbar navbar-expand navbar-light bg-light">

@@ -4,32 +4,28 @@ import "../styles/globals.css";
 import Cookies from "js-cookie";
 import { UserContext } from "../context/UserContext";
 import { useState, useEffect } from "react";
-import jwt from "jsonwebtoken";
+import axios from "axios";
+import { responseSymbol } from "next/dist/server/web/spec-compliant/fetch-event";
 
-// verifier qu'un token existe dans les cookies, si il y a un token il est potentiellement connecté
-// sinon, rediriger vers le login
 
 function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState(null);
   const token = Cookies.get("token");
-  console.log("token");
-  console.log(token);
-  if (token) {
-    console.log("decode");
-    console.log(jwt.verify(token, "coucou"));
+
+// fetch user (if user connected)
+  async function getUser() {
+    const result = await axios.get("/api/user/getCurrentUser", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    console.log(result);
+    setUser(result.data.user);
   }
-  console.log("user");
-  console.log(user);
-
-  const changeUser = () => {
-    if (token !== undefined) {
-      setUser(token);
-    }
-  };
-
   useEffect(() => {
-    changeUser();
-  }, [token]);
+    getUser();
+  }, []);
+
+  console.log("voici le user");
+  console.log(user);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

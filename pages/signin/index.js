@@ -23,11 +23,7 @@ const SignIn = () => {
     });
     console.log(result);
     Cookies.set("token", result.data.token, { expires: 7 });
-    setUser(result.data.token);
-    // Il faudra ajouter headers.Authorization = `Bearer ${result.data.token}`;
-    // Eventuellement prendre le user aussi dans la réponse
-    // setUser
-    // setUser(result.data.user);
+    setUser(result.data.user);
   }
 
   const handleSubmit = (e) => {

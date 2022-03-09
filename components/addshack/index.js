@@ -2,7 +2,6 @@ import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useUserContext } from "../../context/UserContext";
-import jwt from "jsonwebtoken";
 
 export default function AddShack({ closeModal }) {
   const { user } = useUserContext();
@@ -15,7 +14,7 @@ export default function AddShack({ closeModal }) {
   const token = Cookies.get("token");
 
   useEffect(() => {
-    setId(jwt.verify(user, `coucou`).id);
+    setId(user.id);
   }, []);
 
   const handleChange = () => {
