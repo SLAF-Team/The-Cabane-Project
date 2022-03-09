@@ -69,7 +69,7 @@ async function main() {
       price: "1000",
       description: "Un charme certain, du calme, de la solitude.",
       imageUrl:
-        "https://static.wikia.nocookie.net/harrypotter/images/d/d1/Azkaban_%C3%A9vasion.jpg/revision/latest?cb=20161105110006&path-prefix=fr",
+        "https://img.20mn.fr/XLAEO2z7RDChzR3sMYuFwik/830x532_finistere-il-transforme-un-bunker-de-la-seconde-guerre-mondiale-en-un-gite-a-louer1.jpg",
       location: 75011,
       published: true,
       ownerId: john.id,

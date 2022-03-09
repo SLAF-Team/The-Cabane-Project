@@ -11,6 +11,10 @@ function MyApp({ Component, pageProps }) {
   const token = Cookies.get("token");
   console.log("token")
   console.log(token);
+  if(token){
+    console.log("decode");
+    console.log(jwt_decode(token));
+  }
   console.log("user")
   console.log(user)
 
