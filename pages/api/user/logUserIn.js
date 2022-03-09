@@ -20,19 +20,6 @@ export default async (req, res) => {
       if (!user) {
         res.status(400).json({ status: "error", error: "User Not Found" });
       } else {
-        // + ajouter : comparaison user.password et password (isMatch - avec interface bcrypt ? )
-
-        // if user exists
-
-        // payload for the token
-        // const payload = {
-        //   // name: user.name,
-        //   user
-        //   // email: user.email,
-        //   // isOwner: user.isowner,
-        //   // password: user.password,
-        // };
-
         const token = jwt.sign({ id: user.id, email: user.email }, "coucou");
         bcrypt.compare(password, user.password).then(isMatch => {
         res.status(200).json({ user, token });
