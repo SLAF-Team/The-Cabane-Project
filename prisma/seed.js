@@ -10,6 +10,7 @@ async function main() {
       name: "john",
       email: "john.doe@yopmail.com",
       isowner: true,
+      password: "johndoe",
     },
   });
 
@@ -18,16 +19,19 @@ async function main() {
       name: "Owner1234",
       email: "owner1234@yopmail.com",
       isowner: true,
+      password: "123456",
     },
     {
       name: "Owner2345",
       email: "owner2345@yopmail.com",
       isowner: true,
+      password: "123456",
     },
     {
       name: "Owner3456",
       email: "owner3456@yopmail.com",
       isowner: false,
+      password: "123456",
     },
   ];
 

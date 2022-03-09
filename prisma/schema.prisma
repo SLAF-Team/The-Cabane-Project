@@ -14,19 +14,19 @@ model Cabane {
   id          Int     @id @default(autoincrement())
   title       String
   price       String?
-  description String?
+  description String
   imageUrl    String?
   location    Int?
   published   Boolean @default(false)
-  owner       User?   @relation(fields: [ownerId], references: [id])
-  ownerId     Int?
+  owner       User   @relation(fields: [ownerId], references: [id])
+  ownerId     Int
 }
 
 model User {
   id        Int      @id @default(autoincrement())
   name      String?
-  email     String?  @unique
-  password  String?  
+  email     String  @unique
+  password  String
   isowner   Boolean  @default(false)
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
