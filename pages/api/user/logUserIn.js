@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import jwt from "jsonwebtoken";
 
 const prisma = new PrismaClient();
+const bcrypt = require("bcrypt");
 
 export default async (req, res) => {
   const { email } = req.body;
