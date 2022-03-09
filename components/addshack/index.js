@@ -1,19 +1,19 @@
 import { useRef, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useUserContext } from "../../context/UserContext";
+import jwt from "jsonwebtoken";
 
 export default function AddShack({ closeModal }) {
+  // const { user } = useUserContext();
+
   const [disable, setDisable] = useState(false);
   const [checked, setChecked] = useState(false);
-  const [user, setUser] = useState(null);
 
   const formRef = useRef();
   const token = Cookies.get("token");
-  // console.log("cookkkk")
-  // console.log(jwt_decode(token));
-  // console.log("userrr")
-  // console.log(user.id)
-  // console.log(jwt_decode(token));
+  // const id = jwt.verify(token, `coucou`);
+  // console.log(id);
 
   const handleChange = () => {
     setChecked(!checked);
@@ -36,7 +36,6 @@ export default function AddShack({ closeModal }) {
     const imageUrl = addShackImageUrl.value;
     const location = Number.parseInt(addShackLocation.value, 10);
     const published = checked;
-    // avec useContext ou useAtom --> user.id
     const ownerId = 1;
     await axios.post(
       "/api/shack/addShack",
@@ -56,89 +55,92 @@ export default function AddShack({ closeModal }) {
   }
 
   return (
-    <div className="modal-content">
-      <div className="modal-header"></div>
-      <div className="modal-body content">
-        <form ref={formRef}>
-          <div>
-            <div
-              style={{ flex: "1 1 100%", margin: "0 0 2px 5px" }}
-              className="inputField"
-            >
-              <div className="label">
-                <label>Title</label>
+    <div className="modal">
+      <div className="modal-backdrop" onClick={() => closeModal()}></div>
+      <div className="modal-content">
+        <div className="modal-header"></div>
+        <div className="modal-body content">
+          <form ref={formRef}>
+            <div>
+              <div
+                style={{ flex: "1 1 100%", margin: "0 0 2px 5px" }}
+                className="inputField"
+              >
+                <div className="label">
+                  <label>Title</label>
+                </div>
+                <div>
+                  <input name="addShackTitle" type="text" />
+                </div>
               </div>
-              <div>
-                <input name="addShackTitle" type="text" />
+              <div
+                style={{ flex: "1 1 50%", margin: "0 0 2px 5px" }}
+                className="inputField"
+              >
+                <div className="label">
+                  <label>Price</label>
+                </div>
+                <div>
+                  <input name="addShackPrice" type="text" />
+                </div>
+              </div>
+              <div
+                style={{ flex: "1 1 50%", margin: "0 0 2px 5px" }}
+                className="inputField"
+              >
+                <div className="label">
+                  <label>Description</label>
+                </div>
+                <div>
+                  <textarea
+                    name="addShackDescription"
+                    type="text"
+                    style={{ width: "100%", height: "100px" }}
+                  />
+                </div>
               </div>
             </div>
-            <div
-              style={{ flex: "1 1 50%", margin: "0 0 2px 5px" }}
-              className="inputField"
-            >
+            <div className="inputField">
               <div className="label">
-                <label>Price</label>
+                <label>ImageUrl</label>
               </div>
               <div>
-                <input name="addShackPrice" type="text" />
+                <input name="addShackImageUrl" type="text" />
               </div>
             </div>
-            <div
-              style={{ flex: "1 1 50%", margin: "0 0 2px 5px" }}
-              className="inputField"
-            >
+            <div className="inputField">
               <div className="label">
-                <label>Description</label>
+                <label>Location</label>
               </div>
               <div>
-                <textarea
-                  name="addShackDescription"
-                  type="text"
-                  style={{ width: "100%", height: "100px" }}
+                <input name="addShackLocation" type="text"></input>
+              </div>
+            </div>
+            <div className="inputField">
+              <div>
+                <input
+                  type="checkbox"
+                  name="addShackPublished"
+                  value={checked}
+                  onChange={handleChange}
                 />
+                Publier cette annonce ?
               </div>
             </div>
-          </div>
-          <div className="inputField">
-            <div className="label">
-              <label>ImageUrl</label>
-            </div>
-            <div>
-              <input name="addShackImageUrl" type="text" />
-            </div>
-          </div>
-          <div className="inputField">
-            <div className="label">
-              <label>Location</label>
-            </div>
-            <div>
-              <input name="addShackLocation" type="text"></input>
-            </div>
-          </div>
-          <div className="inputField">
-            <div>
-              <input
-                type="checkbox"
-                name="addShackPublished"
-                value={checked}
-                onChange={handleChange}
-              />
-              Publier cette annonce ?
-            </div>
-          </div>
-        </form>
-      </div>
-      <div className="modal-footer">
-        <button style={{ marginLeft: "0" }} onClick={() => closeModal()}>
-          Annuler
-        </button>
-        <button
-          disabled={disable}
-          className="btn"
-          onClick={() => addNewShack()}
-        >
-          Ajouter
-        </button>
+          </form>
+        </div>
+        <div className="modal-footer">
+          <button style={{ marginLeft: "0" }} onClick={() => closeModal()}>
+            Annuler
+          </button>
+          <button
+            disabled={disable}
+            className="btn"
+            onClick={() => addNewShack()}
+          >
+            Ajouter
+          </button>
+        </div>
       </div>
     </div>
   );
