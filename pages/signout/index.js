@@ -7,6 +7,7 @@ const SignOut = () => {
   const handleClick = () => {
     Cookies.remove("token");
     setUser(null);
+    window.location.pathname = "/";
   };
 
   return (

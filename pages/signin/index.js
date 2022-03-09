@@ -1,7 +1,11 @@
 import { useState } from "react";
 import Cookies from "js-cookie";
+import axios from "axios";
+import { useUserContext } from "../../context/UserContext";
 
 const SignIn = () => {
+  const { setUser } = useUserContext();
+
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -13,63 +17,56 @@ const SignIn = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = () => {
-    const data = {
-      user: {
-        email: email,
-        password: password,
-      },
-    };
+  async function signUserIn(data) {
+    const result = await axios.post("/api/user/logUserIn", {
+      ...data,
+    });
+    console.log(result);
+    Cookies.set("token", result.data.token, { expires: 7 });
+    setUser(result.data.token);
+    // Il faudra ajouter headers.Authorization = `Bearer ${result.data.token}`;
+    // Eventuellement prendre le user aussi dans la réponse
+    // setUser
+    // setUser(result.data.user);
   }
-  // A revoir avec méthode Next pour call Prisma
 
-  //   fetch("http://localhost:3000/users/sign_in", {
-  //     method: "post",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(data),
-  //   }).then((res) => {
-  //     if (res.ok) {
-  //       const token = res.headers.get("Authorization");
-  //       Cookies.set("token", token, { expires: 7 });
-  //       return res.json();
-  //     } else {
-  //       throw new Error(res);
-  //     }
-  //   });
-  // };
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      const data = {
+        email: email,
+        // password: password,
+      };
+      signUserIn(data);
+    };
 
   return (
     <form onSubmit={handleSubmit}>
+      <h1>Connexion</h1>
 
-        <h1>Connexion</h1>
+      <div className="form-group">
+        <label htmlFor="email">Email *</label>
+        <input
+          id="email"
+          type="text"
+          onChange={handleEmail}
+          className="form-control"
+        />
+      </div>
 
-        <div className="form-group">
-          <label htmlFor="email">Identifiant *</label>
-          <input
-            id="email"
-            type="text"
-            onChange={handleEmail}
-            className="form-control"
-          />
-        </div>
+      <div className="form-group">
+        <label htmlFor="password">Mot de passe *</label>
+        <input
+          id="password"
+          type="text"
+          onChange={handlePassword}
+          className="form-control"
+        />
+      </div>
 
-        <div className="form-group">
-          <label htmlFor="password">Mot de passe *</label>
-          <input
-            id="password"
-            type="text"
-            onChange={handlePassword}
-            className="form-control"
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="btn btn-primary"
-        >Connexion</button>
-      </form>
+      <button type="submit" className="btn btn-primary">
+        Connexion
+      </button>
+    </form>
   );
 };
 

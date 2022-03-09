@@ -1,15 +1,13 @@
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
-import classes from './ShackCard.module.css';
-import Link from 'next/link'
-
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { CardActionArea } from "@mui/material";
+import classes from "./ShackCard.module.css";
+import Link from "next/link";
 
 const ShackCard = ({ shack }) => {
-
-  const shackLink = `/shacks/${shack.id}`
+const shackLink = `/shacks/${shack.id}`;
 
   return (
     <Link href={shackLink}>
@@ -33,6 +31,6 @@ const ShackCard = ({ shack }) => {
       </Card>
     </Link>
   );
-}
+};
 
-export default ShackCard
+export default ShackCard;

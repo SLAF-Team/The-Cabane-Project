@@ -10,6 +10,7 @@ async function main() {
       name: "john",
       email: "john.doe@yopmail.com",
       isowner: true,
+      password: "johndoe",
     },
   });
 
@@ -18,16 +19,19 @@ async function main() {
       name: "Owner1234",
       email: "owner1234@yopmail.com",
       isowner: true,
+      password: "123456",
     },
     {
       name: "Owner2345",
       email: "owner2345@yopmail.com",
       isowner: true,
+      password: "123456",
     },
     {
       name: "Owner3456",
       email: "owner3456@yopmail.com",
       isowner: false,
+      password: "123456",
     },
   ];
 
@@ -69,8 +73,8 @@ async function main() {
       price: "1000",
       description: "Un charme certain, du calme, de la solitude.",
       imageUrl:
-        "https://static.wikia.nocookie.net/harrypotter/images/d/d1/Azkaban_%C3%A9vasion.jpg/revision/latest?cb=20161105110006&path-prefix=fr",
-      location: 88000,
+        "https://img.20mn.fr/XLAEO2z7RDChzR3sMYuFwik/830x532_finistere-il-transforme-un-bunker-de-la-seconde-guerre-mondiale-en-un-gite-a-louer1.jpg",
+      location: 75011,
       published: true,
       ownerId: john.id,
     },
