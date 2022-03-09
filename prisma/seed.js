@@ -57,17 +57,26 @@ async function main() {
     {
       title: "Kaban",
       price: "40",
-      description:
-        "Pas compris ce que je faisais là.",
+      description: "Pas compris ce que je faisais là.",
       imageUrl:
         "https://www.vesnadesign.com.tr/Uploads/UrunResimleri/basic-kase-kaban-pembe-37a5f3.jpeg",
       location: 75011,
       published: true,
       ownerId: john.id,
     },
+    {
+      title: "AzCaban",
+      price: "1000",
+      description: "Un charme certain, du calme, de la solitude.",
+      imageUrl:
+        "https://static.wikia.nocookie.net/harrypotter/images/d/d1/Azkaban_%C3%A9vasion.jpg/revision/latest?cb=20161105110006&path-prefix=fr",
+      location: 88000,
+      published: true,
+      ownerId: john.id,
+    },
   ];
 
-  await prisma.user.createMany({
+  https: await prisma.user.createMany({
     data: users,
   });
 

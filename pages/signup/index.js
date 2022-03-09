@@ -1,7 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
+import { useUserContext } from "../../context/UserContext";
+import jwt_decode from "jwt-decode";
 
 const SignUp = () => {
+
+  const {setUser} = useUserContext()
 
   // States for registration
   const [name, setName] = useState("");
@@ -24,22 +29,24 @@ const SignUp = () => {
   };
 
   async function signUserUp(data) {
-    await axios.post("/api/user/addUser", {
+    const result = await axios.post("/api/user/addUser", {
       ...data,
     });
-    window.location.reload();
+    console.log(result);
+    Cookies.set("token", result.data.token, { expires: 7 });
+    setUser(jwt_decode(Cookies.get("token")))
+    // window.location.reload();
   }
 
   // Handling the form submission + fetch data + update state
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
-      // user: {
-        name: name,
-        email: email,
-        // password: password,
-      // },
+      name: name,
+      email: email,
+      // password: password,
     };
+    console.log(data);
     signUserUp(data);
   };
 
