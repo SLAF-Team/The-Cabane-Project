@@ -7,7 +7,6 @@ import classes from './ShackCard.module.css';
 import Link from 'next/link'
 
 
-
 const ShackCard = ({ shack }) => {
 
   const shackLink = `/shacks/${shack.id}`

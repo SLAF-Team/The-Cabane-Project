@@ -2,8 +2,8 @@ import Link from "next/link";
 import { PrismaClient } from "@prisma/client";
 import Image from "next/image";
 import classes from "./shacks.module.css";
+import prisma from '../../lib/prisma.ts'
 
-const prisma = new PrismaClient();
 
 const ShackPage = ({ shack, user }) => {
   return (
