@@ -2,7 +2,6 @@ import { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useUserContext } from "../../context/UserContext";
-import jwt_decode from "jwt-decode";
 
 const SignUp = () => {
   const { setUser } = useUserContext();

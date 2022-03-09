@@ -70,7 +70,7 @@ async function main() {
       description: "Un charme certain, du calme, de la solitude.",
       imageUrl:
         "https://static.wikia.nocookie.net/harrypotter/images/d/d1/Azkaban_%C3%A9vasion.jpg/revision/latest?cb=20161105110006&path-prefix=fr",
-      location: 88000,
+      location: 75011,
       published: true,
       ownerId: john.id,
     },
