@@ -30,14 +30,14 @@ const SignIn = () => {
     // setUser(result.data.user);
   }
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      const data = {
-        email: email,
-        // password: password,
-      };
-      signUserIn(data);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      email: email,
+      password: password,
     };
+    signUserIn(data);
+  };
 
   return (
     <form onSubmit={handleSubmit}>

@@ -1,15 +1,19 @@
 // lib/prisma.ts
+
+// creation d'un singletone - création au niveau du scope global de la variable prisma
+
 import { PrismaClient } from '@prisma/client';
 
-let prisma: PrismaClient;
+let prismatemp: PrismaClient;
 
 if (process.env.NODE_ENV === 'production') {
-  prisma = new PrismaClient();
+  prismatemp = new PrismaClient();
 } else {
-  if (!global.prisma) {
-    global.prisma = new PrismaClient();
+  if (!global.prismatemp) {
+    global.prismatemp = new PrismaClient();
   }
-  prisma = global.prisma;
+  prismatemp = global.prismatemp;
 }
 
+const prisma = prismatemp
 export default prisma;

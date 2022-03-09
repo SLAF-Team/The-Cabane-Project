@@ -1,9 +1,10 @@
 import { PrismaClient } from "@prisma/client";
+import Image from "next/image";
+import prisma from '../../lib/prisma.ts'
 import { useReducer } from "react";
 import classes from "./Shacks.module.css";
 import { useUserContext } from "../../context/UserContext";
 
-const prisma = new PrismaClient();
 
 const ShackPage = ({ shack }) => {
   const { user } = useUserContext();

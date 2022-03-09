@@ -1,10 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import jwt from "jsonwebtoken"
-
-const prisma = new PrismaClient();
+import prisma from '../../../lib/prisma.ts'
+const bcrypt = require("bcrypt");
 
 export default async (req, res) => {
   const data = req.body;
+  data.password = bcrypt.hashSync(data.password, 8);
   try {
     const user = await prisma.user.create({
       data: {
