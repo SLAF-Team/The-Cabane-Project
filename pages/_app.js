@@ -9,12 +9,14 @@ import jwt_decode from "jwt-decode";
 function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState(null);
   const token = Cookies.get("token");
+  console.log("token")
   console.log(token);
+  console.log("user")
   console.log(user)
 
   const changeUser = () => {
     if (token !== undefined) {
-      setUser(jwt_decode(token));
+      setUser(token);
     }
   };
 
