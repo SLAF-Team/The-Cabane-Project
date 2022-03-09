@@ -7,23 +7,23 @@ export default function Navbar() {
 
   return (
     <nav className="navbar navbar-expand navbar-light bg-light">
-      <div className="navbar-nav container">
-        <Link href="/" exact className="nav-item nav-link">
-          Home
+      <div className="d-flex justify-content-center container">
+        <Link href="/" exact>
+          <a className="nav-item nav-link px-2">Home</a>
         </Link>
         {!user ? (
           <>
-            <Link href="/signup" exact className="nav-item nav-link">
-              Inscription
+            <Link href="/signup" exact className="nav-item nav-link px-2">
+              <a className="nav-item nav-link px-2">Inscription</a>
             </Link>
-            <Link href="/signin" exact className="nav-item nav-link">
-              Connexion
+            <Link href="/signin" exact className="nav-item nav-link px-2">
+              <a className="nav-item nav-link px-2">Connexion</a>
             </Link>
           </>
         ) : null}
         {user ? (
-          <Link href="/signout" exact className="nav-item nav-link">
-            Déconnexion
+          <Link href="/signout" exact className="nav-item nav-link px-2">
+            <a className="nav-item nav-link px-2">Déconnexion</a>
           </Link>
         ) : null}
       </div>
