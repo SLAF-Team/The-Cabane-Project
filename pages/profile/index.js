@@ -3,18 +3,19 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import ShackCard from "../../components/shackcard/ShackCard";
+import { useRouter } from "next/router";
 
 const Profile = () => {
-  const { user } = useUserContext();
+  const router = useRouter();
+  const { user, setUser } = useUserContext();
   const token = Cookies.get("token");
   const [currentUserShacks, setCurrentUserShacks] = useState([]);
 
+  // get shacks
   async function getUserShacks() {
     const result = await axios.get("/api/shack/getCurrentUserShacks", {
       headers: { Authorization: `Bearer ${token}` },
     });
-    console.log("resultat")
-    console.log(result);
     setCurrentUserShacks(result.data.userShacks);
   }
 
@@ -22,10 +23,20 @@ const Profile = () => {
     getUserShacks();
   }, []);
 
+  // delete user
+  async function deleteUser() {
+    const result = await axios.delete(
+      "/api/user/deleteUser",
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    setUser(null);
+    router.push("/");
+  }
+
   const handleDeleteUser = () => {
-    console.log("supressionnnnn");
-    // ouvrir une modal pour confirmer le choix
-    // déclencher la fonction dans l'API
+    if (window.confirm("Es tu sûr de vouloir supprimer ton compte?")) {
+      deleteUser();
+    }
   };
 
   return (
@@ -43,10 +54,10 @@ const Profile = () => {
           <button className="btn btn-secondary">Editer mon profil</button>
           {currentUserShacks ? (
             <>
-              <h1>Mes cabannes</h1>
               {currentUserShacks.map((shack) => (
                 <>
-                <ShackCard shack={shack} />
+                  <h1>Mes cabannes</h1>
+                  <ShackCard shack={shack} />
                 </>
               ))}
             </>
