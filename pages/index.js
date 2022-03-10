@@ -18,23 +18,24 @@ export default function Home(props) {
       </Head>
       <main className={styles.main}>
         <Hero />
-          <div className={classes.cards}>
-        <div className="my-5 text-center">
-          <div className="mx-auto">
-            <span className="fs-3 fw-bold mb-4">
-              Trouvez la bicoque de vos rêves !
-            </span>
-          </div>
-        </div>
         <div className={classes.cards}>
-          {shacks?.map((shack, i) => (
-            <ShackCard shack={shack} key={i} />
-          ))}
-        </div>
-        <div>
-          <Button variant="outlined" size="large" href="/shacks" >
-            Nos Cabannes
-          </Button>
+          <div className="my-5 text-center">
+            <div className="mx-auto">
+              <span className="fs-3 fw-bold mb-4">
+                Trouvez la bicoque de vos rêves !
+              </span>
+            </div>
+          </div>
+          <div className={classes.cards}>
+            {shacks?.map((shack, i) => (
+              <ShackCard shack={shack} key={i} />
+            ))}
+          </div>
+          <div>
+            <Button variant="outlined" size="large" href="/shacks" >
+              Nos Cabannes
+            </Button>
+          </div>
         </div>
       </main>
     </div>
