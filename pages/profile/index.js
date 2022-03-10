@@ -65,16 +65,20 @@ const Profile = () => {
           <div className="text-center">
             <p className={classes.capitalize}>{user?.name}</p>
             <p className="fs-6 fw-bold">{user?.email}</p>
+            <p className="fs-6 fw-bold">{user?.isowner? "Propriétaire" : "Visiteur"}</p>
           </div>
           <div className={styles.shackDivider}></div>
           <div className="text-center">
             <p className="fs-6 fw-bold">
               {currentUserShacks.length} Cabanes publiées
             </p>
-            <a className="btn btn-primary mb-3" onClick={() => handleUpdateUser()}>
+            <a
+              className="btn btn-primary mb-3"
+              onClick={() => handleUpdateUser()}
+            >
               Editer mon profil
             </a>
-            {form ? <UpdateUserForm user={user}/> : null}
+            {form ? <UpdateUserForm user={user} /> : null}
             <a className="btn btn-danger" onClick={() => handleDeleteUser()}>
               Supprimer mon profil
             </a>

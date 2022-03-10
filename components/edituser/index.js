@@ -37,7 +37,6 @@ const updateUserForm = ({user}) => {
       },
       { headers: { Authorization: `Bearer ${token}` } }
     );
-    console.log(result)
     setUser(result.data);
   }
 
