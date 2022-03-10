@@ -5,13 +5,14 @@ import { useUserContext } from "../../context/UserContext";
 import EditShack from "../../components/editshack/index";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
 const ShackPage = ({ shack }) => {
   const { user } = useUserContext();
   const [id, setId] = useState("");
-  const formRef = useRef();
   const token = Cookies.get("token");
   const [showEditShackModal, setShowEditShackModal] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     setId(user?.id);
@@ -22,6 +23,7 @@ const ShackPage = ({ shack }) => {
       await axios.delete(`/api/shack/${shack?.id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+      router.push("/");
     }
   }
 

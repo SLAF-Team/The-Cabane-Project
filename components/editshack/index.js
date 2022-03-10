@@ -46,7 +46,7 @@ export default function EditShack({ closeModal, shack }) {
     );
     setDisable(false);
     closeModal();
-    router.push(`/shacks/${shack.id}`);
+    router.push(`/shacks/${shack?.id}`);
   }
 
   return (
