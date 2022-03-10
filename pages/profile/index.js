@@ -8,8 +8,8 @@ const Profile = () => {
   const { user, setUser } = useUserContext();
   const token = Cookies.get("token");
   const [currentUserShacks, setCurrentUserShacks] = useState([]);
-  const [confirmDelete, setConfirmDelete] = useState(false);
 
+  // get shacks
   async function getUserShacks() {
     const result = await axios.get("/api/shack/getCurrentUserShacks", {
       headers: { Authorization: `Bearer ${token}` },
@@ -17,26 +17,27 @@ const Profile = () => {
     setCurrentUserShacks(result.data.userShacks);
   }
 
+  useEffect(() => {
+    getUserShacks();
+  }, []);
+
+  // delete user
   async function deleteUser() {
     const result = await axios.delete("/api/user/deleteUser", {
       headers: { Authorization: `Bearer ${token}` },
-      data: { id: user.id },
+      body: { id: user.id },
     });
     console.log("resultat");
     console.log(result);
     setUser(null);
     window.location = "/";
+    router.push("/");
   }
 
-  useEffect(() => {
-    getUserShacks();
-  }, []);
-
   const handleDeleteUser = () => {
-    if (confirmDelete === true) {
+    if (window.confirm("Es tu sûr de vouloir supprimer ton compte?")) {
       deleteUser();
     }
-    setConfirmDelete(!confirmDelete);
   };
 
   return (
@@ -49,14 +50,14 @@ const Profile = () => {
             className="btn btn-secondary"
             onClick={() => handleDeleteUser()}
           >
-            {confirmDelete ? "Gooo for delete" : "Supprimer mon profil"}
+            Supprimer mon profil
           </button>
           <button className="btn btn-secondary">Editer mon profil</button>
           {currentUserShacks ? (
             <>
-              <h1>Mes cabannes</h1>
               {currentUserShacks.map((shack) => (
                 <>
+                  <h1>Mes cabannes</h1>
                   <ShackCard shack={shack} />
                 </>
               ))}
