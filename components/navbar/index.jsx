@@ -34,7 +34,7 @@ export default function Navbar() {
             <Link href="/signout" exact>
               <a className="nav-item nav-link px-2">Déconnexion</a>
             </Link>
-            <Link href={"/users/" + id} exact>
+            <Link href="/profile" exact>
               <a className="nav-item nav-link px-2">My profile</a>
             </Link>
           </>
