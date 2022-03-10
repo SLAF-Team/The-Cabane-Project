@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState(null);
   const token = Cookies.get("token");
 
-// fetch user (if user connected)
+  // fetch user (if user connected)
   async function getUser() {
     const result = await axios.get("/api/user/getCurrentUser", {
       headers: { Authorization: `Bearer ${token}` },
@@ -20,6 +20,7 @@ function MyApp({ Component, pageProps }) {
     console.log(result);
     setUser(result.data.user);
   }
+  
   useEffect(() => {
     getUser();
   }, []);

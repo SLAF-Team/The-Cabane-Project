@@ -35,7 +35,6 @@ const SignUp = () => {
     const result = await axios.post("/api/user/addUser", {
       ...data,
     });
-    console.log(result);
     Cookies.set("token", result.data.token, { expires: 7 });
     setUser(result.data.user);
   }
@@ -49,7 +48,6 @@ const SignUp = () => {
       password: password,
       isowner: isOwner,
     };
-    console.log(data);
     signUserUp(data);
   };
 

@@ -20,10 +20,13 @@ export default async (req, res) => {
       if (!user) {
         res.status(400).json({ status: "error", error: "User Not Found" });
       } else {
-        const token = jwt.sign({ id: user.id, email: user.email }, "coucou");
-        bcrypt.compare(password, user.password).then(isMatch => {
-        res.status(200).json({ user, token });
-      })
+        bcrypt.compare(password, user.password).then((isMatch) => {
+          const token = jwt.sign(
+            { id: user.id, email: user.email },
+            process.env.JWT_KEY
+          );
+          res.status(200).json({ user, token });
+        });
       }
     }
   } catch (err) {

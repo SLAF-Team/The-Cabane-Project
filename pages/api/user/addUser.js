@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import jwt from "jsonwebtoken"
-import prisma from '../../../lib/prisma.ts'
+import jwt from "jsonwebtoken";
+import prisma from "../../../lib/prisma.ts";
 const bcrypt = require("bcrypt");
 
 export default async (req, res) => {
@@ -12,8 +12,11 @@ export default async (req, res) => {
         ...data,
       },
     });
-    const token = jwt.sign(user.id, 'coucou');
-    res.status(200).json({user, token});
+    const token = jwt.sign(
+      { id: user.id, email: user.email },
+      process.env.JWT_KEY
+    );
+    res.status(200).json({ user, token });
   } catch (err) {
     console.log(err);
     res.status(403).json({ err: "Error occured while adding a new user." });
