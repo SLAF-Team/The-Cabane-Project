@@ -1,20 +1,27 @@
-import prisma from '../../../lib/prisma.ts'
+import prisma from "../../../lib/prisma.ts";
+import { checkAuth } from "../../../lib/auth";
 
 export default async (req, res) => {
-  const { id, name, email, isowner } = req.body;
+  console.log(req)
+  const isAuth = await checkAuth(req);
+  if (!isAuth) {
+    res.status(403).json({ err: "Forbidden" });
+    return;
+  }
+
+  const data = req.body;
+
   try {
-    const updateUser = await prisma.user.update({
+    const result = await prisma.user.update({
       where: {
-        id: parseInt(id),
+        id: data.id,
       },
       data: {
-        name,
-        email,
-        isowner,
+        ...data,
       },
     });
-    res.status(200).json(updateUser);
-  } catch (error) {
-    res.status(403).json({ err: "Error occurred while updating a user." });
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(400).json({ err: "Error while updating." });
   }
 };
