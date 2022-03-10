@@ -42,7 +42,13 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps() {
-  const allShacks = await prisma.cabane.findMany();
+  const allShacks = await prisma.cabane.findMany({
+    orderBy: [
+      {
+        title: "asc",
+      },
+    ],
+  });
   return {
     props: {
       shacks: allShacks,
