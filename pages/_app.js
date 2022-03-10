@@ -11,7 +11,6 @@ function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState(null);
   const token = Cookies.get("token");
 
-  // fetch user (if user connected)
   async function getUser() {
     const result = await axios.get("/api/user/getCurrentUser", {
       headers: { Authorization: `Bearer ${token}` },
