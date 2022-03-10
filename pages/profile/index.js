@@ -4,6 +4,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import ShackCard from "../../components/shackcard/ShackCard";
 import { useRouter } from "next/router";
+import styles from "../../styles/Home.module.css";
+import classes from "./Profile.module.css";
 
 const Profile = () => {
   const router = useRouter();
@@ -25,10 +27,9 @@ const Profile = () => {
 
   // delete user
   async function deleteUser() {
-    const result = await axios.delete(
-      "/api/user/deleteUser",
-      { headers: { Authorization: `Bearer ${token}` } },
-    );
+    const result = await axios.delete("/api/user/deleteUser", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
     setUser(null);
     router.push("/");
   }
@@ -40,31 +41,38 @@ const Profile = () => {
   };
 
   return (
-    <>
-      {user ? (
-        <>
-          <h1>{user.name}</h1>
-          <h2>{user.email}</h2>
-          <button
-            className="btn btn-secondary"
-            onClick={() => handleDeleteUser()}
-          >
-            Supprimer mon profil
-          </button>
-          <button className="btn btn-secondary">Editer mon profil</button>
-          {currentUserShacks ? (
+    <div className="my-3 row">
+      <div className="col-9">
+        <div className="text-center mb-3">
+          <h2>Mes cabannes</h2>
+        </div>
+        <div className={styles.cards}>
+          {currentUserShacks.map((shack) => (
             <>
-              {currentUserShacks.map((shack) => (
-                <>
-                  <h1>Mes cabannes</h1>
-                  <ShackCard shack={shack} />
-                </>
-              ))}
+              <ShackCard width="18.3vw" shack={shack} />
             </>
-          ) : null}
-        </>
-      ) : null}
-    </>
+          ))}
+        </div>
+      </div>
+      <div className="col-3 py-3">
+        <div className={styles.shackCard}>
+          <div className="text-center">
+            <p className={classes.capitalize}>{user?.name}</p>
+            <p className="fs-6 fw-bold">{user?.email}</p>
+          </div>
+          <div className={styles.shackDivider}></div>
+          <div className="text-center">
+            <p className="fs-6 fw-bold">
+              {currentUserShacks.length} Cabanes publiées
+            </p>
+            <a className="btn btn-primary mb-3">Editer mon profil</a>
+            <a className="btn btn-danger" onClick={() => handleDeleteUser()}>
+              Supprimer mon profil
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

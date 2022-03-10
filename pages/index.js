@@ -1,9 +1,9 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Hero from "../components/hero";
-import ShackCard from '../components/shackcard/ShackCard'
-import Button from '@mui/material/Button';
-import prisma from '../lib/prisma.ts'
+import ShackCard from "../components/shackcard/ShackCard";
+import Button from "@mui/material/Button";
+import prisma from "../lib/prisma.ts";
 
 export default function Home(props) {
   const shacks = props.shacks;
@@ -27,11 +27,11 @@ export default function Home(props) {
           </div>
           <div className={styles.cards}>
             {shacks?.map((shack, i) => (
-              <ShackCard shack={shack} key={i} />
+              <ShackCard width="30%" shack={shack} key={i} />
             ))}
           </div>
           <div>
-            <Button variant="outlined" size="large" href="/shacks" >
+            <Button variant="outlined" size="large" href="/shacks">
               Nos Cabannes
             </Button>
           </div>

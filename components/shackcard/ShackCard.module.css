@@ -1,5 +1,13 @@
 .card {
-  margin-left: 15px;
-  margin-right: 15px;
-  margin-bottom: 40px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 25px;
+}
+
+.cardText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
