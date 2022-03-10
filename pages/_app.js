@@ -18,13 +18,11 @@ function MyApp({ Component, pageProps }) {
     console.log(result);
     setUser(result.data.user);
   }
-  
+
   useEffect(() => {
     getUser();
   }, []);
 
-  console.log("voici le user");
-  console.log(user);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
