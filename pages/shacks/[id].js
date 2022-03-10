@@ -67,24 +67,31 @@ const ShackPage = ({ shack }) => {
           <p>{shack?.description}</p>
         </div>
       </div>
-      {user ? (
-        <div className="col-3">
-          <div className={classes.shackCard}>
-            <div className="text-center my-2">
-              <p className="fs-6 fw-bold">Agence de {shack?.owner.name}</p>
-            </div>
-            <div className={classes.shackDivider}></div>
-            <div className="text-center">
+      <div className="col-3">
+        <div className={classes.shackCard}>
+          <div className="text-center my-2">
+            <p className="fs-6 fw-bold">Agence de {shack?.owner.name}</p>
+          </div>
+          <div className={classes.shackDivider}></div>
+          <div className="text-center">
+            {user ? (
               <a
                 className="btn btn-primary"
                 href={"mailto:" + shack?.owner.email}
               >
                 Contacter le propriétaire
               </a>
-            </div>
+            ) : (
+              <a
+                className="btn btn-primary"
+                href={"/signin"}
+              >
+                Contacter le propriétaire
+              </a>
+            )}
           </div>
         </div>
-      ) : null}
+      </div>
       {showEditShackModal ? (
         <EditShack
           shack={shack}
