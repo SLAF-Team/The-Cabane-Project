@@ -6,16 +6,16 @@ import { CardActionArea } from "@mui/material";
 import classes from "./ShackCard.module.css";
 import Link from "next/link";
 
-const ShackCard = ({ shack }) => {
+const ShackCard = ({ shack, width }) => {
   const shackLink = `/shacks/${shack.id}`;
 
   return (
     <Link href={shackLink}>
-      <Card className={classes.card} sx={{ width: "30%" }}>
+      <Card className={classes.card} sx={{ width: { width } }}>
         <CardActionArea>
           <CardMedia
             component="img"
-            height="140"
+            height="160"
             image={shack.imageUrl}
             alt={shack.title}
           />
@@ -23,7 +23,11 @@ const ShackCard = ({ shack }) => {
             <Typography gutterBottom variant="h5" component="div">
               {shack.title}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              className={classes.cardText}
+            >
               {shack.description}
             </Typography>
           </CardContent>
