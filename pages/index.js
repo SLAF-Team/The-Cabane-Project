@@ -1,9 +1,9 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Hero from "../components/hero";
-import ShackCard from '../components/shackcard/ShackCard'
-import Button from '@mui/material/Button';
-import prisma from '../lib/prisma.ts'
+import ShackCard from "../components/shackcard/ShackCard";
+import Button from "@mui/material/Button";
+import prisma from "../lib/prisma.ts";
 
 export default function Home(props) {
   const shacks = props.shacks;
@@ -31,7 +31,7 @@ export default function Home(props) {
             ))}
           </div>
           <div>
-            <Button variant="outlined" size="large" href="/shacks" >
+            <Button variant="outlined" size="large" href="/shacks">
               Nos Cabannes
             </Button>
           </div>
@@ -42,7 +42,13 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps() {
-  const allShacks = await prisma.cabane.findMany();
+  const allShacks = await prisma.cabane.findMany({
+    orderBy: [
+      {
+        title: "asc",
+      },
+    ],
+  });
   return {
     props: {
       shacks: allShacks,
