@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ShackCard from "../../components/shackcard/ShackCard";
-import classes from "../../styles/Home.module.css"
+import classes from "../../styles/Home.module.css";
 import AddShack from "../../components/addshack/index";
 import prisma from "../../lib/prisma.ts";
 import { useUserContext } from "../../context/UserContext";
@@ -13,7 +13,9 @@ function Shacks(props) {
   return (
     <div>
       <div>
-        <h2>Cabannes</h2>
+        <div className="text-center mt-3">
+          <h2>Nos cabannes</h2>
+        </div>
         {user ? (
           <div>
             <button
@@ -32,7 +34,7 @@ function Shacks(props) {
       </div>
       <div className={classes.cards}>
         {shacks?.map((shack, i) => (
-          <ShackCard shack={shack} key={i} />
+          <ShackCard width="30%" shack={shack} key={i} />
         ))}
       </div>
       {showAddShackModal ? (

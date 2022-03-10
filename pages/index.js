@@ -30,7 +30,7 @@ export default function Home(props) {
               <ShackCard width="30%" shack={shack} key={i} />
             ))}
           </div>
-          <div>
+          <div className={styles.bottomBtn}>
             <Button variant="outlined" size="large" href="/shacks">
               Nos Cabannes
             </Button>
@@ -43,6 +43,7 @@ export default function Home(props) {
 
 export async function getServerSideProps() {
   const allShacks = await prisma.cabane.findMany({
+    take: 6,
     orderBy: [
       {
         title: "asc",

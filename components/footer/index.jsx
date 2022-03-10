@@ -7,7 +7,7 @@ import Link from "@mui/material/Link";
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary">
+    <Typography variant="body2" color="text.secondary" textAlign="center">
       {"Copyright © "}
       <Link
         color="inherit"

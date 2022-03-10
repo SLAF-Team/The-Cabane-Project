@@ -12,6 +12,7 @@ const Profile = () => {
   const { user, setUser } = useUserContext();
   const token = Cookies.get("token");
   const [currentUserShacks, setCurrentUserShacks] = useState([]);
+  const [loadmore, setLoadmore] = useState(false);
 
   // get shacks
   async function getUserShacks() {
@@ -40,6 +41,10 @@ const Profile = () => {
     }
   };
 
+  const handleClick = () => {
+    setLoadmore(true);
+  };
+
   return (
     <div className="my-3 row">
       <div className="col-9">
@@ -47,12 +52,25 @@ const Profile = () => {
           <h2>Mes cabannes</h2>
         </div>
         <div className={styles.cards}>
-          {currentUserShacks.map((shack) => (
+          {currentUserShacks.slice(0, 6).map((shack) => (
             <>
               <ShackCard width="18.3vw" shack={shack} />
             </>
           ))}
+          {loadmore &&
+            currentUserShacks.slice(6).map((shack) => (
+              <>
+                <ShackCard width="18.3vw" shack={shack} />
+              </>
+            ))}
         </div>
+        {!loadmore && (
+          <div className="text-center">
+            <a className="btn btn-outline-secondary" onClick={handleClick}>
+              Charger plus
+            </a>
+          </div>
+        )}
       </div>
       <div className="col-3 py-3">
         <div className={styles.shackCard}>
