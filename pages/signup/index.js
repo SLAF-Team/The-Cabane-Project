@@ -58,7 +58,7 @@ const SignUp = () => {
   return (
     <div className="d-flex justify-content-center">
       <div className={classes.forms}>
-        <form onSubmit={handleSubmit}>
+        <form type="password" onSubmit={handleSubmit}>
           <h1>Inscription</h1>
           <div className="form-group">
             <label>Nom</label>
