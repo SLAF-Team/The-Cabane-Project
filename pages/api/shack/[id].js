@@ -10,11 +10,11 @@ export default async (req, res) => {
     return;
   }
 
-  const isTheOwner = await checkIfOwnerIsMe(req, id);
-  if (!isTheOwner) {
-    res.status(403).json({ err: "Forbidden" });
-    return;
-  }
+  // const isTheOwner = await checkIfOwnerIsMe(req, id);
+  // if (!isTheOwner) {
+  //   res.status(403).json({ err: "Forbidden" });
+  //   return;
+  // }
 
   try {
     const deleteShack = await prisma.cabane.delete({
