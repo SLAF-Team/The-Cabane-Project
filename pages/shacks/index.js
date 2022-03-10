@@ -14,7 +14,7 @@ function Shacks(props) {
     <div>
       <div>
         <div className="text-center mt-3">
-          <h2>Nos cabannes</h2>
+          <h2>Nos cabanes</h2>
         </div>
         {user ? (
           <div>
@@ -27,7 +27,7 @@ function Shacks(props) {
               }}
               onClick={() => setShowAddShackModal((pV) => !pV)}
             >
-              Ajouter une cabanne
+              Ajouter une cabane
             </button>
           </div>
         ) : null}
