@@ -3,6 +3,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useUserContext } from "../../context/UserContext";
 import { useRouter } from "next/router";
+import classes from "../../styles/Home.module.css";
 
 const SignUp = () => {
   const { setUser } = useUserContext();
@@ -55,55 +56,57 @@ const SignUp = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Inscription</h1>
-      <div className="form-group">
-        <label>Nom</label>
-        <input
-          onChange={handleName}
-          className="form-control"
-          value={name}
-          type="text"
-        />
-      </div>
-      <div className="form-group">
-        <label>Email *</label>
+    <div className="d-flex justify-content-center">
+      <div className={classes.forms}>
+        <form onSubmit={handleSubmit}>
+          <h1>Inscription</h1>
+          <div className="form-group">
+            <label>Nom</label>
+            <input
+              onChange={handleName}
+              className="form-control my-2"
+              value={name}
+              type="text"
+            />
+          </div>
+          <div className="form-group">
+            <label>Email *</label>
 
-        <input
-          onChange={handleEmail}
-          className="form-control"
-          value={email}
-          type="email"
-        />
-      </div>
-      <div className="form-group">
-        <label>Password *</label>
+            <input
+              onChange={handleEmail}
+              className="form-control my-2"
+              value={email}
+              type="email"
+            />
+          </div>
+          <div className="form-group">
+            <label>Password *</label>
 
-        <input
-          onChange={handlePassword}
-          className="form-control"
-          value={password}
-          type="text"
-        />
-      </div>
+            <input
+              onChange={handlePassword}
+              className="form-control my-2"
+              value={password}
+              type="text"
+            />
+          </div>
 
-      <div className="form-check">
-        <input
-          className="form-check-input"
-          type="checkbox"
-          value=""
-          id="flexCheckDefault"
-          onChange={handleCheck}
-        />
-        <label className="form-check-label">
-          Je suis un propriétaire
-        </label>
-      </div>
+          <div className="form-check my-2">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckDefault"
+              onChange={handleCheck}
+            />
+            <label className="form-check-label">Je suis un propriétaire</label>
+          </div>
 
-      <button type="submit" className="btn btn-primary">
-        Inscription
-      </button>
-    </form>
+          <button type="submit" className="btn btn-primary my-2">
+            Inscription
+          </button>
+        </form>
+      </div>
+    </div>
   );
 };
 

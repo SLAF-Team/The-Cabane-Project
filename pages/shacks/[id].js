@@ -34,20 +34,6 @@ const ShackPage = ({ shack }) => {
             style={{ backgroundImage: `url(${shack?.imageUrl})` }}
           ></div>
         </div>
-        <div style={{ padding: "5px 0" }}>
-          <span>
-            <button
-              onClick={() => setShowEditShackModal((pV) => !pV)}
-              style={{ marginLeft: "0" }}
-              className="btn"
-            >
-              Modifier
-            </button>
-            <button onClick={deleteShack} className="btn btn-danger">
-              Supprimer
-            </button>
-          </span>
-        </div>
 
         <div className="row my-2">
           <div className="col-10">
@@ -74,18 +60,31 @@ const ShackPage = ({ shack }) => {
           </div>
           <div className={classes.shackDivider}></div>
           <div className="text-center">
+            {user?.id == shack.owner.id && (
+              <div className="mb-3">
+                <span>
+                  <button
+                    onClick={() => setShowEditShackModal((pV) => !pV)}
+                    style={{ marginLeft: "0" }}
+                    className="btn me-1 btn-outline-secondary"
+                  >
+                    Modifier
+                  </button>
+                  <button onClick={deleteShack} className="btn me-1 btn-danger">
+                    Supprimer
+                  </button>
+                </span>
+              </div>
+            )}
             {user ? (
               <a
-                className="btn btn-primary"
+                className="btn btn-secondary"
                 href={"mailto:" + shack?.owner.email}
               >
                 Contacter le propriétaire
               </a>
             ) : (
-              <a
-                className="btn btn-primary"
-                href={"/signin"}
-              >
+              <a className="btn btn-secondary" href={"/signin"}>
                 Contacter le propriétaire
               </a>
             )}
@@ -106,7 +105,7 @@ export async function getServerSideProps(context) {
   const { id } = context.params;
   const shack = await prisma.cabane.findUnique({
     where: { id: parseInt(id) },
-    include: { owner: { select: { email: true, name: true } } },
+    include: { owner: { select: { email: true, name: true, id: true } } },
   });
   return {
     props: {

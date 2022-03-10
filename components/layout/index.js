@@ -1,6 +1,6 @@
 import Footer from "../footer";
 import Navbar from "../navbar";
-import styles from './Layout.module.css'
+import styles from "./Layout.module.css";
 
 export default function Layout({ children }) {
   return (
@@ -10,5 +10,4 @@ export default function Layout({ children }) {
       <Footer />
     </div>
   );
-  
 }

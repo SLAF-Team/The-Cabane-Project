@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import { useUserContext } from "../../context/UserContext";
 import { useRouter } from "next/router";
 
-const updateUserForm = ({user}) => {
+const updateUserForm = ({ user }) => {
   const { setUser } = useUserContext();
   const router = useRouter();
 
@@ -12,7 +12,7 @@ const updateUserForm = ({user}) => {
   const [email, setEmail] = useState(user.email);
   const [isOwner, setOwner] = useState(user.isowner);
 
-  const token = Cookies.get("token")
+  const token = Cookies.get("token");
 
   // Handling the name change
   const handleName = (e) => {
@@ -29,11 +29,13 @@ const updateUserForm = ({user}) => {
   };
 
   async function signUserUp() {
-    const result = await axios.put("/api/user/editUser", {
-      id: user.id,
-      name: name,
-      email: email,
-      isowner: isOwner,
+    const result = await axios.put(
+      "/api/user/editUser",
+      {
+        id: user.id,
+        name: name,
+        email: email,
+        isowner: isOwner,
       },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -49,9 +51,8 @@ const updateUserForm = ({user}) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Edition</h1>
       <div className="form-group">
-        <label>Nom</label>
+        <label className="my-2">Nom</label>
         <input
           onChange={handleName}
           className="form-control"
@@ -60,7 +61,7 @@ const updateUserForm = ({user}) => {
         />
       </div>
       <div className="form-group">
-        <label>Email *</label>
+        <label className="my-2">Email*</label>
         <input
           onChange={handleEmail}
           className="form-control"
@@ -68,7 +69,7 @@ const updateUserForm = ({user}) => {
           type="email"
         />
       </div>
-      <div className="form-check">
+      <div className="form-check  mt-3">
         <input
           className="form-check-input"
           type="checkbox"
@@ -78,7 +79,7 @@ const updateUserForm = ({user}) => {
         />
         <label className="form-check-label">Je suis un propriétaire</label>
       </div>
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="btn btn-primary my-3">
         J'édite
       </button>
     </form>

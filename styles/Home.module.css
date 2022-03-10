@@ -162,7 +162,11 @@
 }
 
 .bottomBtn {
-  margin-top: 2%;
+  margin-top: 1%;
   text-align: center;
   width: 100%;
+}
+
+.forms {
+  width: 30vw;
 }
