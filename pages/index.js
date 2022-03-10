@@ -1,7 +1,6 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Hero from "../components/hero";
-import classes from './shacks/shacks.module.css';
 import ShackCard from '../components/shackcard/ShackCard'
 import Button from '@mui/material/Button';
 import prisma from '../lib/prisma.ts'
@@ -18,7 +17,7 @@ export default function Home(props) {
       </Head>
       <main className={styles.main}>
         <Hero />
-        <div className={classes.cards}>
+        <div className={styles.cards}>
           <div className="my-5 text-center">
             <div className="mx-auto">
               <span className="fs-3 fw-bold mb-4">
@@ -26,7 +25,7 @@ export default function Home(props) {
               </span>
             </div>
           </div>
-          <div className={classes.cards}>
+          <div className={styles.cards}>
             {shacks?.map((shack, i) => (
               <ShackCard shack={shack} key={i} />
             ))}
