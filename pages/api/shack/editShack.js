@@ -1,27 +1,31 @@
-import { PrismaClient } from "@prisma/client";
-import prisma from '../../../lib/prisma.ts'
-
+import { checkAuth, checkOwner } from "../../../lib/auth";
+import prisma from "../../../lib/prisma.ts";
 
 export default async (req, res) => {
-  const { id, title, price, description, imageUrl, published, owner, ownerId } =
-    req.body;
+  const isAuth = await checkAuth(req);
+  if (!isAuth) {
+    res.status(403).json({ err: "Forbidden" });
+    return;
+  }
+
+  const isOwner = await checkOwner(req);
+  if (!isOwner) {
+    res.status(403).json({ err: "Forbidden" });
+    return;
+  }
+
+  const data = req.body;
   try {
-    const updateShack = await prisma.cabane.update({
+    const result = await prisma.cabane.update({
       where: {
         id: parseInt(id),
       },
       data: {
-        title,
-        price,
-        description,
-        imageUrl,
-        published,
-        owner,
-        ownerId,
+        ...data,
       },
     });
-    res.status(200).json(updateShack);
-  } catch (error) {
-    res.status(403).json({ err: "Error occurred while updating a shack." });
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(400).json({ err: "Error while updating." });
   }
 };
