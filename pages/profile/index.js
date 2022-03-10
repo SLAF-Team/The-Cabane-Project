@@ -5,17 +5,27 @@ import { useState, useEffect } from "react";
 import ShackCard from "../../components/shackcard/ShackCard";
 
 const Profile = () => {
-  const { user } = useUserContext();
+  const { user, setUser } = useUserContext();
   const token = Cookies.get("token");
   const [currentUserShacks, setCurrentUserShacks] = useState([]);
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   async function getUserShacks() {
     const result = await axios.get("/api/shack/getCurrentUserShacks", {
       headers: { Authorization: `Bearer ${token}` },
     });
-    console.log("resultat")
-    console.log(result);
     setCurrentUserShacks(result.data.userShacks);
+  }
+
+  async function deleteUser() {
+    const result = await axios.delete("/api/user/deleteUser", {
+      headers: { Authorization: `Bearer ${token}` },
+      data: { id: user.id },
+    });
+    console.log("resultat");
+    console.log(result);
+    setUser(null);
+    window.location = "/";
   }
 
   useEffect(() => {
@@ -23,9 +33,10 @@ const Profile = () => {
   }, []);
 
   const handleDeleteUser = () => {
-    console.log("supressionnnnn");
-    // ouvrir une modal pour confirmer le choix
-    // déclencher la fonction dans l'API
+    if (confirmDelete === true) {
+      deleteUser();
+    }
+    setConfirmDelete(!confirmDelete);
   };
 
   return (
@@ -38,7 +49,7 @@ const Profile = () => {
             className="btn btn-secondary"
             onClick={() => handleDeleteUser()}
           >
-            Supprimer mon profil
+            {confirmDelete ? "Gooo for delete" : "Supprimer mon profil"}
           </button>
           <button className="btn btn-secondary">Editer mon profil</button>
           {currentUserShacks ? (
@@ -46,7 +57,7 @@ const Profile = () => {
               <h1>Mes cabannes</h1>
               {currentUserShacks.map((shack) => (
                 <>
-                <ShackCard shack={shack} />
+                  <ShackCard shack={shack} />
                 </>
               ))}
             </>
