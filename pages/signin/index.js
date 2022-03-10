@@ -41,7 +41,7 @@ const SignIn = () => {
   return (
     <div className="d-flex justify-content-center">
       <div className={classes.forms}>
-        <form type="password" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <h1>Connexion</h1>
 
           <div className="form-group">
@@ -58,7 +58,7 @@ const SignIn = () => {
             <label htmlFor="password">Mot de passe *</label>
             <input
               id="password"
-              type="text"
+              type="password" 
               onChange={handlePassword}
               className="form-control my-2"
             />
