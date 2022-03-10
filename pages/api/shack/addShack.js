@@ -1,4 +1,4 @@
-import { checkAuth } from "../../../lib/auth";
+import { checkAuth, checkOwner } from "../../../lib/auth";
 import prisma from "../../../lib/prisma.ts";
 
 export default async (req, res) => {

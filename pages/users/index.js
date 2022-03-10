@@ -1,19 +1,17 @@
-import Link from "next/link";
 import { useUserContext } from "../../context/UserContext";
-import jwt from "jsonwebtoken";
 
 const Users = () => {
   const { user } = useUserContext();
-  let profile = "";
-
-  if (user) {
-    profile = jwt.verify(user, "coucou");
-  }
 
   return (
-    <div>
-      <h2>{profile.email}</h2>
-    </div>
+    <>
+      {user ? (
+        <div>
+          <h1>{user.name}</h1>
+          <h2>{user.email}</h2>
+        </div>
+      ) : null}
+    </>
   );
 };
 

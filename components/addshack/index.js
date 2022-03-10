@@ -1,19 +1,21 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useUserContext } from "../../context/UserContext";
-import jwt from "jsonwebtoken";
 
 export default function AddShack({ closeModal }) {
-  // const { user } = useUserContext();
+  const { user } = useUserContext();
 
   const [disable, setDisable] = useState(false);
   const [checked, setChecked] = useState(false);
+  const [id, setId] = useState("");
 
   const formRef = useRef();
   const token = Cookies.get("token");
-  // const id = jwt.verify(token, `coucou`);
-  // console.log(id);
+
+  useEffect(() => {
+    setId(user.id);
+  }, []);
 
   const handleChange = () => {
     setChecked(!checked);
@@ -36,7 +38,7 @@ export default function AddShack({ closeModal }) {
     const imageUrl = addShackImageUrl.value;
     const location = Number.parseInt(addShackLocation.value, 10);
     const published = checked;
-    const ownerId = 1;
+    const ownerId = id;
     await axios.post(
       "/api/shack/addShack",
       {
@@ -138,7 +140,7 @@ export default function AddShack({ closeModal }) {
             className="btn"
             onClick={() => addNewShack()}
           >
-            Ajouter
+            Ajouter !
           </button>
         </div>
       </div>
