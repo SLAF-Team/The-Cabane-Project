@@ -2,9 +2,11 @@ import { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useUserContext } from "../../context/UserContext";
+import { useRouter } from "next/router";
 
 const SignUp = () => {
   const { setUser } = useUserContext();
+  const router = useRouter();
 
   // States for registration
   const [name, setName] = useState("");
@@ -37,6 +39,7 @@ const SignUp = () => {
     });
     Cookies.set("token", result.data.token, { expires: 7 });
     setUser(result.data.user);
+    router.push("/profile");
   }
 
   // Handling the form submission + fetch data + update state

@@ -27,7 +27,7 @@ const Profile = () => {
   async function deleteUser() {
     const result = await axios.delete(
       "/api/user/deleteUser",
-      { headers: { Authorization: `Bearer ${token}` } }
+      { headers: { Authorization: `Bearer ${token}` } },
     );
     setUser(null);
     router.push("/");
