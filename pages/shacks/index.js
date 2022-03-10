@@ -13,7 +13,7 @@ function Shacks(props) {
   return (
     <div>
       <div>
-        <h2>Cabannes</h2>
+        <h2>Cabanes</h2>
         {user ? (
           <div>
             <button

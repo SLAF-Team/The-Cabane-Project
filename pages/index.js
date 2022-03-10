@@ -32,7 +32,7 @@ export default function Home(props) {
           </div>
           <div>
             <Button variant="outlined" size="large" href="/shacks">
-              Nos Cabannes
+              Nos Cabanes
             </Button>
           </div>
         </div>
