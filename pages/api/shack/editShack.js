@@ -1,4 +1,4 @@
-import { checkAuth, checkOwner } from "../../../lib/auth";
+import { checkAuth, checkIfOwnerIsMe } from "../../../lib/auth";
 import prisma from "../../../lib/prisma.ts";
 
 export default async (req, res) => {
@@ -9,8 +9,8 @@ export default async (req, res) => {
     return;
   }
 
-  const isOwner = await checkOwner(req);
-  if (!isOwner) {
+  const isTheOwner = await checkIfOwnerIsMe(req, id);
+  if (!isTheOwner) {
     res.status(403).json({ err: "Forbidden" });
     return;
   }
