@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { responseSymbol } from "next/dist/server/web/spec-compliant/fetch-event";
 
-
 function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState(null);
   const token = Cookies.get("token");

@@ -78,6 +78,16 @@ async function main() {
       published: true,
       ownerId: john.id,
     },
+    {
+      title: "Kanban",
+      price: "0",
+      description: "How we did Cabannes",
+      imageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/61cFdfpnSNL.jpg",
+      location: 31000,
+      published: true,
+      ownerId: john.id,
+    },
   ];
 
   https: await prisma.user.createMany({
