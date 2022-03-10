@@ -1,13 +1,30 @@
-import { PrismaClient } from "@prisma/client";
-import Image from "next/image";
-import prisma from '../../lib/prisma.ts'
-import { useReducer } from "react";
-import classes from "../../styles/Home.module.css"
+import prisma from "../../lib/prisma.ts";
+import { useState, useRef, useEffect } from "react";
+import classes from "../../styles/Home.module.css";
 import { useUserContext } from "../../context/UserContext";
-
+import EditShack from "../../components/editshack/index";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 const ShackPage = ({ shack }) => {
   const { user } = useUserContext();
+  const [id, setId] = useState("");
+  const formRef = useRef();
+  const token = Cookies.get("token");
+  const [showEditShackModal, setShowEditShackModal] = useState(false);
+
+  useEffect(() => {
+    setId(user?.id);
+  }, []);
+
+  async function deleteShack() {
+    if (window.confirm("Souhaitez vous supprimer cette cabane?")) {
+      await axios.delete(
+        `/api/shack/${shack?.id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+        );
+      };
+  }
 
   return (
     <div className="my-3 row">
@@ -18,6 +35,21 @@ const ShackPage = ({ shack }) => {
             style={{ backgroundImage: `url(${shack?.imageUrl})` }}
           ></div>
         </div>
+        <div style={{ padding: "5px 0" }}>
+          <span>
+            <button
+              onClick={() => setShowEditShackModal((pV) => !pV)}
+              style={{ marginLeft: "0" }}
+              className="btn"
+            >
+              Modifier
+            </button>
+            <button onClick={deleteShack} className="btn btn-danger">
+              Supprimer
+            </button>
+          </span>
+        </div>
+
         <div className="row my-2">
           <div className="col-10">
             <h3>{shack?.title}!</h3>
@@ -53,6 +85,12 @@ const ShackPage = ({ shack }) => {
           </div>
         </div>
       </div>
+      {showEditShackModal ? (
+        <EditShack
+          shack={shack}
+          closeModal={() => setShowEditShackModal(false)}
+        />
+      ) : null}
     </div>
   );
 };

@@ -29,8 +29,6 @@ export default function AddShack({ closeModal }) {
       addShackDescription,
       addShackImageUrl,
       addShackLocation,
-      addShackPublished,
-      addShackOwnerID,
     } = formRef.current;
     const title = addShackTitle.value;
     const price = addShackPrice.value;
@@ -69,7 +67,7 @@ export default function AddShack({ closeModal }) {
                 className="inputField"
               >
                 <div className="label">
-                  <label>Title</label>
+                  <label>Nom</label>
                 </div>
                 <div>
                   <input name="addShackTitle" type="text" />
