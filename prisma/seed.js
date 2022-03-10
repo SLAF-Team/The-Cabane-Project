@@ -103,7 +103,7 @@ async function main() {
     {
       title: "Kanban",
       price: "0",
-      description: "How we did Cabannes",
+      description: "How we did Cabanes",
       imageUrl:
         "https://images-na.ssl-images-amazon.com/images/I/61cFdfpnSNL.jpg",
       location: 31000,
