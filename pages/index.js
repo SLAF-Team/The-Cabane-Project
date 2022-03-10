@@ -18,7 +18,7 @@ export default function Home(props) {
       <main className={styles.main}>
         <Hero />
         <div className={styles.cards}>
-          <div className="my-5 text-center">
+          <div className="my-4 py-1 text-center">
             <div className="mx-auto">
               <span className="fs-3 fw-bold mb-4">
                 Trouvez la bicoque de vos rêves !
@@ -31,9 +31,9 @@ export default function Home(props) {
             ))}
           </div>
           <div className={styles.bottomBtn}>
-            <Button variant="outlined" size="large" href="/shacks">
+            <a href="/shacks" className="btn btn-outline-secondary">
               Nos Cabanes
-            </Button>
+            </a>
           </div>
         </div>
       </main>

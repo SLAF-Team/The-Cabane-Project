@@ -15,6 +15,14 @@ a {
   box-sizing: border-box;
 }
 
+nav {
+  background-color: #fff8dc;
+}
+
+footer {
+  background-color: #fff8dc !important;
+}
+
 .modal {
   position: fixed;
   top: 0;

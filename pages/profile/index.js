@@ -14,7 +14,7 @@ const Profile = () => {
   const token = Cookies.get("token");
   const [currentUserShacks, setCurrentUserShacks] = useState([]);
   const [loadmore, setLoadmore] = useState(false);
-  const [form, setForm] = useState(false)
+  const [form, setForm] = useState(false);
 
   // get shacks
   async function getUserShacks() {
@@ -49,8 +49,7 @@ const Profile = () => {
 
   const handleUpdateUser = () => {
     setForm(!form);
-  }
-
+  };
 
   return (
     <div className="my-3 row">
@@ -82,21 +81,25 @@ const Profile = () => {
       <div className="col-3 py-3">
         <div className={styles.shackCard}>
           <div className="text-center">
-            <p className={classes.capitalize}>{user?.name}</p>
+            <p className={classes.capitalize}>Bonjour {user?.name} !</p>
             <p className="fs-6 fw-bold">{user?.email}</p>
-            <p className="fs-6 fw-bold">{user?.isowner? "Propriétaire" : "Visiteur"}</p>
+            <p className="fs-6 fw-bold">
+              Statut : {user?.isowner ? "Propriétaire" : "Visiteur"}
+            </p>
           </div>
           <div className={styles.shackDivider}></div>
           <div className="text-center">
             <p className="fs-6 fw-bold">
               {currentUserShacks.length} Cabanes publiées
             </p>
-            <a
-              className="btn btn-primary mb-3"
-              onClick={() => handleUpdateUser()}
-            >
-              Editer mon profil
-            </a>
+            {!form && (
+              <a
+                className="btn btn-primary mb-3"
+                onClick={() => handleUpdateUser()}
+              >
+                Editer mon profil
+              </a>
+            )}
             {form ? <UpdateUserForm user={user} /> : null}
             <a className="btn btn-danger" onClick={() => handleDeleteUser()}>
               Supprimer mon profil
