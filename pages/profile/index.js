@@ -5,9 +5,8 @@ import { useState, useEffect } from "react";
 import ShackCard from "../../components/shackcard/ShackCard";
 import { useRouter } from "next/router";
 
-
 const Profile = () => {
-    const router = useRouter();
+  const router = useRouter();
   const { user, setUser } = useUserContext();
   const token = Cookies.get("token");
   const [currentUserShacks, setCurrentUserShacks] = useState([]);
@@ -24,12 +23,13 @@ const Profile = () => {
     getUserShacks();
   }, []);
 
+  // delete user
   async function deleteUser() {
-    const id = user.id;
     const result = await axios.delete(
       "/api/user/deleteUser",
       { headers: { Authorization: `Bearer ${token}` } }
     );
+    setUser(null);
     router.push("/");
   }
 

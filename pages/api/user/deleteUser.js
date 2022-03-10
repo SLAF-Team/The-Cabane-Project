@@ -3,13 +3,12 @@ import { checkAuth } from "../../../lib/auth";
 import jwt from "jsonwebtoken";
 
 export default async (req, res) => {
-  // vérifier les authorisations
+
   const isAuth = await checkAuth(req);
   if (!isAuth) {
     res.status(403).json({ err: "Forbidden" });
     return;
   }
-
   const { authorization } = req.headers;
   if (!authorization) {
     return false;
