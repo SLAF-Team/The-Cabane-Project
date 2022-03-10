@@ -8,7 +8,7 @@ export default async (req, res) => {
   }
   const token = authorization.replace(/^Bearer\s/, "");
   try {
-    const { id } = jwt.verify(token, "coucou");
+    const { id } = jwt.verify(token, process.env.JWT_KEY);
     if (!id) {
       return false;
     }
