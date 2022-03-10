@@ -86,7 +86,7 @@ const SignUp = () => {
               onChange={handlePassword}
               className="form-control my-2"
               value={password}
-              type="text"
+              type="password"
             />
           </div>
 
