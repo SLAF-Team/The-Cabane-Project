@@ -40,7 +40,7 @@ async function main() {
       title: "Cabane grand standing",
       price: "500",
       description:
-        "pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world.",
+        "pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source  in the world.",
       imageUrl:
         "https://resize-elle.ladmedia.fr/rcrop/638,,forcex/img/var/plain_site/storage/images/deco/news-tendances/les-plus-belles-cabanes-de-france/90648911-3-fre-FR/Les-plus-belles-cabanes-de-France.jpg",
       location: 38330,
@@ -75,6 +75,16 @@ async function main() {
       imageUrl:
         "https://img.20mn.fr/XLAEO2z7RDChzR3sMYuFwik/830x532_finistere-il-transforme-un-bunker-de-la-seconde-guerre-mondiale-en-un-gite-a-louer1.jpg",
       location: 75011,
+      published: true,
+      ownerId: john.id,
+    },
+    {
+      title: "Kanban",
+      price: "0",
+      description: "How we did Cabannes",
+      imageUrl:
+        "https://images-na.ssl-images-amazon.com/images/I/61cFdfpnSNL.jpg",
+      location: 31000,
       published: true,
       ownerId: john.id,
     },

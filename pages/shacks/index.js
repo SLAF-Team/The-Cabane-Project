@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ShackCard from "../../components/shackcard/ShackCard";
-import classes from "./shacks.module.css";
+import classes from "../../styles/Home.module.css"
 import AddShack from "../../components/addshack/index";
 import prisma from "../../lib/prisma.ts";
 import { useUserContext } from "../../context/UserContext";

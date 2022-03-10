@@ -5,13 +5,13 @@ import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const { user } = useUserContext();
-  const [id, setId] = useState("");
+  // const [id, setId] = useState("");
 
-  useEffect(() => {
-    if (user) {
-      setId(user.id);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (user) {
+  //     setId(user.id);
+  //   }
+  // }, []);
 
   return (
     <nav className="navbar navbar-expand navbar-light bg-light">
@@ -35,7 +35,7 @@ export default function Navbar() {
               <a className="nav-item nav-link px-2">Déconnexion</a>
             </Link>
             <Link href="/profile" exact>
-              <a className="nav-item nav-link px-2">My profile</a>
+              <a className="nav-item nav-link px-2">Profil</a>
             </Link>
           </>
         ) : null}
