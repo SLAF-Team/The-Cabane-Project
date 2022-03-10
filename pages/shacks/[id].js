@@ -19,11 +19,10 @@ const ShackPage = ({ shack }) => {
 
   async function deleteShack() {
     if (window.confirm("Souhaitez vous supprimer cette cabane?")) {
-      await axios.delete(
-        `/api/shack/${shack?.id}`,
-        { headers: { Authorization: `Bearer ${token}` } }
-        );
-      };
+      await axios.delete(`/api/shack/${shack?.id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+    }
   }
 
   return (
@@ -71,17 +70,25 @@ const ShackPage = ({ shack }) => {
       <div className="col-3">
         <div className={classes.shackCard}>
           <div className="text-center my-2">
-            {user && <p>{shack?.owner.email}</p>}
             <p className="fs-6 fw-bold">Agence de {shack?.owner.name}</p>
           </div>
           <div className={classes.shackDivider}></div>
           <div className="text-center">
-            <a
-              className="btn btn-primary"
-              href={"mailto:" + shack?.owner.email}
-            >
-              Contacter le propriétaire
-            </a>
+            {user ? (
+              <a
+                className="btn btn-primary"
+                href={"mailto:" + shack?.owner.email}
+              >
+                Contacter le propriétaire
+              </a>
+            ) : (
+              <a
+                className="btn btn-primary"
+                href={"/signin"}
+              >
+                Contacter le propriétaire
+              </a>
+            )}
           </div>
         </div>
       </div>

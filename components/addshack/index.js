@@ -2,9 +2,11 @@ import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useUserContext } from "../../context/UserContext";
+import { useRouter } from "next/router";
 
 export default function AddShack({ closeModal }) {
   const { user } = useUserContext();
+  const router = useRouter();
 
   const [disable, setDisable] = useState(false);
   const [checked, setChecked] = useState(false);
@@ -51,7 +53,7 @@ export default function AddShack({ closeModal }) {
       { headers: { Authorization: `Bearer ${token}` } }
     );
     setDisable(false);
-    window.location.reload();
+    router.push("/");
   }
 
   return (
