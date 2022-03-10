@@ -2,9 +2,11 @@ import { useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { useUserContext } from "../../context/UserContext";
+import { useRouter } from "next/router";
 
 const SignIn = () => {
   const { setUser } = useUserContext();
+  const router = useRouter();
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -23,6 +25,7 @@ const SignIn = () => {
     });
     Cookies.set("token", result.data.token, { expires: 7 });
     setUser(result.data.user);
+    router.push("/profile");
   }
 
   const handleSubmit = (e) => {
