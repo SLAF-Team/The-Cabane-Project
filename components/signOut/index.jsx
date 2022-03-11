@@ -7,9 +7,11 @@ const SignOut = () => {
   const router = useRouter();
 
   const handleClick = () => {
-    Cookies.remove("token");
-    setUser(null);
-    router.push("/");
+    if (window.confirm("Es tu sûr de vouloir te déconnecter?")) {
+      Cookies.remove("token");
+      setUser(null);
+      router.push("/");
+    }
   };
 
   return (
