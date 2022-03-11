@@ -8,17 +8,12 @@ export default async (req, res) => {
     res.status(403).json({ err: "Forbidden" });
     return;
   }
+
   const { authorization } = req.headers;
-  if (!authorization) {
-    return false;
-  }
   const token = authorization.replace(/^Bearer\s/, "");
 
   try {
     const { id } = jwt.verify(token, process.env.JWT_KEY);
-    if (!id) {
-      return false;
-    }
     const deleteUser = await prisma.user.delete({
       where: {
         id: id,
