@@ -13,24 +13,9 @@ function Shacks(props) {
   return (
     <div>
       <div>
-        <div className="text-center mt-3">
+        <div className="text-center my-3">
           <h2>Nos cabanes</h2>
         </div>
-        {user ? (
-          <div>
-            <button
-              className="btn"
-              style={{
-                paddingLeft: "15px",
-                paddingRight: "15px",
-                fontWeight: "500",
-              }}
-              onClick={() => setShowAddShackModal((pV) => !pV)}
-            >
-              Ajouter une cabane
-            </button>
-          </div>
-        ) : null}
       </div>
       <div className={classes.cards}>
         {shacks?.map((shack, i) => (

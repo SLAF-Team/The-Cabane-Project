@@ -53,7 +53,7 @@ const Profile = () => {
 
   return (
     <div className="my-3 row">
-      <div className="col-9">
+      <div className={classes.mySchacks}>
         <div className="text-center mb-3">
           <h2>Mes cabanes</h2>
         </div>

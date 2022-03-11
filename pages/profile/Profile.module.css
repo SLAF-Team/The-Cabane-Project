@@ -2,3 +2,11 @@
   text-transform: capitalize;
   font-weight: bold;
 }
+
+.mySchacks {
+  flex: 0 0 auto;
+  width: 75%;
+  overflow: scroll;
+  height: 100vh;
+  text-align: center;
+}
