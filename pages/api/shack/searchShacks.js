@@ -25,7 +25,7 @@ export default async (req, res) => {
       },
       {
         orderBy: {
-          updatedAt: "asc",
+          createdAt: "asc",
         },
       }
     );
