@@ -11,7 +11,6 @@ const updateUserForm = ({ user }) => {
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
   const [isOwner, setOwner] = useState(user.isowner);
-
   const token = Cookies.get("token");
 
   // Handling the name change
@@ -69,16 +68,18 @@ const updateUserForm = ({ user }) => {
           type="email"
         />
       </div>
-      <div className="form-check  mt-3">
-        <input
-          className="form-check-input"
-          type="checkbox"
-          value=""
-          id="flexCheckDefault"
-          onChange={handleCheck}
-        />
-        <label className="form-check-label">Je suis un propriétaire</label>
-      </div>
+      {!user.isowner ? (
+        <div className="form-check  mt-3">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            value={isOwner}
+            id="flexCheckDefault"
+            onChange={handleCheck}
+          />
+          <label className="form-check-label">Je suis un propriétaire</label>
+        </div>
+      ) : null}
       <button type="submit" className="btn btn-primary my-3">
         J'édite
       </button>
