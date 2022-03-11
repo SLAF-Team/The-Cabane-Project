@@ -13,9 +13,12 @@ const SignOut = () => {
   };
 
   return (
-    <button className="btn btn-danger" onClick={() => handleClick()}>
-      Déconnexion ?
-    </button>
+    <a
+      className="nav-item nav-link link-dark fw-bold px-2 add"
+      onClick={() => handleClick()}
+    >
+      Déconnexion
+    </a>
   );
 };
 

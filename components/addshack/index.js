@@ -132,15 +132,19 @@ export default function AddShack({ closeModal }) {
           </form>
         </div>
         <div className="modal-footer">
-          <button style={{ marginLeft: "0" }} onClick={() => closeModal()}>
+          <button
+            className="btn btn-outline-secondary"
+            style={{ marginLeft: "0" }}
+            onClick={() => closeModal()}
+          >
             Annuler
           </button>
           <button
             disabled={disable}
-            className="btn"
+            className="btn btn-secondary"
             onClick={() => addNewShack()}
           >
-            Ajouter !
+            Ajouter
           </button>
         </div>
       </div>

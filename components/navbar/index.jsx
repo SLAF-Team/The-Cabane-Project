@@ -1,19 +1,15 @@
 import Link from "next/link";
 import { useUserContext } from "../../context/UserContext";
 import styles from "./NavBar.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import shedLogo from "../../assets/images/shed.png";
 import Image from "next/image";
+import AddShack from "../addshack/index";
+import SignOut from "../signOut/index";
 
 export default function Navbar() {
   const { user } = useUserContext();
-  // const [id, setId] = useState("");
-
-  // useEffect(() => {
-  //   if (user) {
-  //     setId(user.id);
-  //   }
-  // }, []);
+  const [showAddShackModal, setShowAddShackModal] = useState(false);
 
   return (
     <nav className="navbar navbar-expand navbar-light">
@@ -27,9 +23,12 @@ export default function Navbar() {
           </Link>
         </div>
         <div className="d-flex mx-4 px-4">
-          <Link href="/" exact>
-            <a className="nav-item nav-link link-dark fw-bold px-2">Home</a>
-          </Link>
+          <a
+            className="nav-item nav-link link-dark fw-bold px-2 add"
+            onClick={() => setShowAddShackModal((pV) => !pV)}
+          >
+            Ajouter une cabane
+          </a>
           <Link href="/shacks" exact>
             <a className="nav-item nav-link link-dark fw-bold px-2">
               Nos cabanes
@@ -56,15 +55,14 @@ export default function Navbar() {
                   Profil
                 </a>
               </Link>
-              <Link href="/signout" exact>
-                <a className="nav-item nav-link link-dark fw-bold px-2">
-                  Se déconnecter
-                </a>
-              </Link>
+              <SignOut />
             </>
           ) : null}
         </div>
       </div>
+      {showAddShackModal ? (
+        <AddShack closeModal={() => setShowAddShackModal(false)} />
+      ) : null}{" "}
     </nav>
   );
 }
