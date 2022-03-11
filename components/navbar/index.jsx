@@ -25,7 +25,7 @@ export default function Navbar() {
     <nav className="navbar navbar-expand navbar-light">
       <div className="d-flex justify-content-between container px-4">
         <div className="d-flex mx-4 px-4">
-          <Image src={shedLogo} width="44" height="44" />
+          <Image src={shedLogo} width="40" height="40" />
           <Link href="/" exact>
             <a className="nav-item nav-link link-dark px-3 fw-bold fs-4">
               The Cabane Project
