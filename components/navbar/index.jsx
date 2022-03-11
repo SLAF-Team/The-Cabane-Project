@@ -6,10 +6,20 @@ import shedLogo from "../../assets/images/shed.png";
 import Image from "next/image";
 import AddShack from "../addshack/index";
 import SignOut from "../signOut/index";
+import { useRouter } from "next/router";
 
 export default function Navbar() {
   const { user } = useUserContext();
   const [showAddShackModal, setShowAddShackModal] = useState(false);
+  const router = useRouter();
+
+  const handleClick = () => {
+    if (user) {
+      setShowAddShackModal((pV) => !pV);
+    } else {
+      router.push("/signin");
+    }
+  };
 
   return (
     <nav className="navbar navbar-expand navbar-light">
@@ -25,7 +35,7 @@ export default function Navbar() {
         <div className="d-flex mx-4 px-4">
           <a
             className="nav-item nav-link link-dark fw-bold px-2 add"
-            onClick={() => setShowAddShackModal((pV) => !pV)}
+            onClick={handleClick}
           >
             Ajouter une cabane
           </a>
