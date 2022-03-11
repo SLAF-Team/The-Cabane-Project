@@ -62,69 +62,76 @@ export default function AddShack({ closeModal }) {
       <div className="modal-content">
         <div className="modal-header"></div>
         <div className="modal-body content">
-          <form ref={formRef}>
-            <div>
-              <div
-                style={{ flex: "1 1 100%", margin: "0 0 2px 5px" }}
-                className="inputField"
-              >
-                <div className="label">
-                  <label>Nom</label>
-                </div>
-                <div>
-                  <input name="addShackTitle" type="text" />
-                </div>
+          <form ref={formRef} className="form">
+            <div className="form-group">
+              <div className="label">
+                <label>Nom</label>
               </div>
-              <div
-                style={{ flex: "1 1 50%", margin: "0 0 2px 5px" }}
-                className="inputField"
-              >
-                <div className="label">
-                  <label>Price</label>
-                </div>
-                <div>
-                  <input name="addShackPrice" type="text" />
-                </div>
-              </div>
-              <div
-                style={{ flex: "1 1 50%", margin: "0 0 2px 5px" }}
-                className="inputField"
-              >
-                <div className="label">
-                  <label>Description</label>
-                </div>
-                <div>
-                  <textarea
-                    name="addShackDescription"
-                    type="text"
-                    style={{ width: "100%", height: "100px" }}
-                  />
-                </div>
+              <div>
+                <input
+                  className="form-control my-2"
+                  name="addShackTitle"
+                  type="text"
+                />
               </div>
             </div>
-            <div className="inputField">
+            <div className="form-group">
+              <div className="label">
+                <label>Price</label>
+              </div>
+              <div>
+                <input
+                  className="form-control my-2"
+                  name="addShackPrice"
+                  type="text"
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="label">
+                <label>Description</label>
+              </div>
+              <div>
+                <textarea
+                  name="addShackDescription"
+                  type="text"
+                  className="form-control my-2"
+                  style={{ width: "100%", height: "100px" }}
+                />
+              </div>
+            </div>
+            <div className="form-group">
               <div className="label">
                 <label>ImageUrl</label>
               </div>
               <div>
-                <input name="addShackImageUrl" type="text" />
+                <input
+                  className="form-control my-2"
+                  name="addShackImageUrl"
+                  type="text"
+                />
               </div>
             </div>
-            <div className="inputField">
+            <div className="form-group">
               <div className="label">
                 <label>Location</label>
               </div>
               <div>
-                <input name="addShackLocation" type="text"></input>
+                <input
+                  className="form-control my-2"
+                  name="addShackLocation"
+                  type="text"
+                ></input>
               </div>
             </div>
-            <div className="inputField">
+            <div className="form-group d-flex justify-content-center">
               <div>
                 <input
                   type="checkbox"
                   name="addShackPublished"
                   value={checked}
                   onChange={handleChange}
+                  className="my-3 mx-2"
                 />
                 Publier cette annonce ?
               </div>

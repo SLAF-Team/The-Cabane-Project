@@ -25,8 +25,12 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    getUserShacks();
-  }, []);
+    if (!user) {
+      router.push("/signin");
+    } else {
+      getUserShacks();
+    }
+  }, [user]);
 
   // delete user
   async function deleteUser() {

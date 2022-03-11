@@ -74,7 +74,7 @@ footer {
   background-color: white;
   z-index: 1;
   /*  padding: 10px;*/
-  margin-top: 10px;
+  margin-top: 8vh;
 
   width: 520px;
   box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2),
@@ -84,4 +84,10 @@ footer {
 
 .add {
   cursor: pointer;
+}
+
+.form {
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
 }

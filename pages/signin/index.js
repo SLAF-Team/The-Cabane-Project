@@ -58,7 +58,7 @@ const SignIn = () => {
             <label htmlFor="password">Mot de passe *</label>
             <input
               id="password"
-              type="password" 
+              type="password"
               onChange={handlePassword}
               className="form-control my-2"
             />
