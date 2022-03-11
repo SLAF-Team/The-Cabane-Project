@@ -74,7 +74,7 @@ export default function Navbar() {
       </div>
       {showAddShackModal ? (
         <AddShack closeModal={() => setShowAddShackModal(false)} />
-      ) : null}{" "}
+      ) : null}
     </nav>
   );
 }

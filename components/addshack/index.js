@@ -55,7 +55,7 @@ const AddShack = ({ closeModal }) => {
     );
     setDisable(false);
     closeModal();
-    router.push("/");
+    router.push("/shacks");
   }
 
   return (
