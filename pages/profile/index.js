@@ -57,31 +57,34 @@ const Profile = () => {
 
   return (
     <div className="my-3 row">
-      <div className={classes.mySchacks}>
-        <div className="text-center mb-3">
-          <h2>Mes cabanes</h2>
-        </div>
-        <div className={styles.cards}>
-          {currentUserShacks.slice(0, 6).map((shack) => (
-            <>
-              <ShackCard width="18.3vw" shack={shack} />
-            </>
-          ))}
-          {loadmore &&
-            currentUserShacks.slice(6).map((shack) => (
+      {user?.isowner ? (
+        <div className={classes.mySchacks}>
+          <div className="text-center mb-3">
+            <h2>Mes cabanes</h2>
+          </div>
+          <div className={styles.cards}>
+            {currentUserShacks.slice(0, 6).map((shack) => (
               <>
                 <ShackCard width="18.3vw" shack={shack} />
               </>
             ))}
-        </div>
-        {!loadmore && (
-          <div className="text-center">
-            <a className="btn btn-outline-secondary" onClick={handleClick}>
-              Charger plus
-            </a>
+            {loadmore &&
+              currentUserShacks.slice(6).map((shack) => (
+                <>
+                  <ShackCard width="18.3vw" shack={shack} />
+                </>
+              ))}
           </div>
-        )}
-      </div>
+          {!loadmore && (
+            <div className="text-center">
+              <a className="btn btn-outline-secondary" onClick={handleClick}>
+                Charger plus
+              </a>
+            </div>
+          )}
+        </div>
+      ) : null}
+
       <div className="col-3 py-3">
         <div className={styles.shackCard}>
           <div className="text-center">
