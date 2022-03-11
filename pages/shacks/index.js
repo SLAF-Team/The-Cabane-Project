@@ -15,8 +15,7 @@ function Shacks(props) {
     setFilter(e.target.value);
   };
 
-  async function getSearchedShacks(data) {
-    const filter = data;
+  async function getSearchedShacks(filter) {
     const result = await axios.post("/api/shack/searchShacks", {
       filter,
     });
