@@ -33,12 +33,14 @@ export default function Navbar() {
           </Link>
         </div>
         <div className="d-flex mx-4 px-4">
-          <a
-            className="nav-item nav-link link-dark fw-bold px-2 add"
-            onClick={handleClick}
-          >
-            Ajouter une cabane
-          </a>
+          {user?.isowner ? (
+            <a
+              className="nav-item nav-link link-dark fw-bold px-2 add"
+              onClick={handleClick}
+            >
+              Ajouter une cabane
+            </a>
+          ) : null}
           <Link href="/shacks" exact>
             <a className="nav-item nav-link link-dark fw-bold px-2">
               Nos cabanes
@@ -72,7 +74,7 @@ export default function Navbar() {
       </div>
       {showAddShackModal ? (
         <AddShack closeModal={() => setShowAddShackModal(false)} />
-      ) : null}{" "}
+      ) : null}
     </nav>
   );
 }

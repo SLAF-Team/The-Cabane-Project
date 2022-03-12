@@ -15,7 +15,6 @@ function MyApp({ Component, pageProps }) {
     const result = await axios.get("/api/user/getCurrentUser", {
       headers: { Authorization: `Bearer ${token}` },
     });
-    console.log(result);
     setUser(result.data.user);
   }
 
